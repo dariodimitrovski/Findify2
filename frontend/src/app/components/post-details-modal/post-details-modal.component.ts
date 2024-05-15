@@ -20,7 +20,7 @@ import Icon from 'ol/style/Icon';
 import { Point } from 'ol/geom';
 import VectorSource from 'ol/source/Vector';
 import VectorLayer from 'ol/layer/Vector';
-import { waitForAsync } from '@angular/core/testing';
+// import { waitForAsync } from '@angular/core/testing';
 import { Coordinate } from 'ol/coordinate';
 
 @Component({

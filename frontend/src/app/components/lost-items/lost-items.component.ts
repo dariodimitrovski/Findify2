@@ -16,11 +16,12 @@ import { CategoryService } from '../../services/category.service';
 import { FilterService } from '../../services/filter.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, mergeMap, of } from 'rxjs';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-lost-items',
   standalone: true,
-  imports: [NavBarComponent, PostDetailsModalComponent, RouterLink, FilterSectionComponent, NgFor, ReactiveFormsModule, NgIf],
+  imports: [NavBarComponent, PostDetailsModalComponent, RouterLink, FilterSectionComponent, NgFor, ReactiveFormsModule, NgIf, FooterComponent],
   templateUrl: './lost-items.component.html',
   styleUrl: './lost-items.component.scss'
 })
