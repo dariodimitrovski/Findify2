@@ -4,6 +4,8 @@ import com.sorsix.finalproject.backend.domain.*
 import com.sorsix.finalproject.backend.repository.PostRepository
 import com.sorsix.finalproject.backend.service.PostService
 import com.sorsix.finalproject.backend.service.UserService
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
@@ -13,7 +15,7 @@ import java.util.stream.Collectors
 @Service
 class PostServiceImpl(private val postRepository: PostRepository, private val userService: UserService) : PostService {
     override fun listAll(): List<Post> = postRepository.findAll()
-    override fun findByStatus(status: PostStatus): List<Post> = postRepository.findByState(status)
+    //override fun findByStatus(status: PostStatus): List<Post> = postRepository.findByState(status)
     override fun findById(id: Long): Post? = postRepository.findByIdOrNull(id)
     override fun deleteById(id: Long) = postRepository.deleteById(id)
     override fun updateState(id: Long, newState: PostStatus): Post? {
@@ -130,6 +132,10 @@ class PostServiceImpl(private val postRepository: PostRepository, private val us
         val post: Post = postRepository.findById(postId).get()
 
         return post.image
+    }
+
+    override fun findByStatus(status: PostStatus, page: Int, size: Int): Page<Post> {
+        return this.postRepository.findAllByState(status, PageRequest.of(page, size))
     }
 
 }

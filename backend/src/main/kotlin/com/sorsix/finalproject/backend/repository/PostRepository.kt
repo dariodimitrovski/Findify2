@@ -5,14 +5,17 @@ import com.sorsix.finalproject.backend.domain.Municipality
 import com.sorsix.finalproject.backend.domain.Post
 import com.sorsix.finalproject.backend.domain.PostStatus
 import jakarta.transaction.Transactional
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
+import org.springframework.data.repository.PagingAndSortingRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface PostRepository : JpaRepository<Post, Long> {
-    fun findByState(status: PostStatus): List<Post>
+interface PostRepository : PagingAndSortingRepository<Post, Long>, JpaRepository<Post, Long> {
+   // fun findByState(status: PostStatus): List<Post>
 
     @Transactional
     @Modifying
@@ -51,4 +54,5 @@ interface PostRepository : JpaRepository<Post, Long> {
 
     fun findAllByTitleContainingIgnoreCaseAndCategoryAndMunicipalityAndState(title: String, category: Category, municipality: Municipality, state: PostStatus): List<Post>
 
+    fun findAllByState(status: PostStatus, pageable: Pageable): Page<Post>
 }

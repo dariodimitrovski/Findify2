@@ -11,9 +11,9 @@ spring:
   application:
     name: 'backend'
   datasource:
-    url: 'jdbc:postgresql://localhost:5432/Findify'
+    url: 'jdbc:postgresql://localhost:5432/findify'
     username: 'postgres'
-    password: 'dario123'
+    password: 'admin'
 
   jpa:
     properties:
