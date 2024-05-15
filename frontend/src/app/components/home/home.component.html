@@ -1,14 +1,14 @@
-<!-- <app-nav-bar></app-nav-bar> -->
-<section class="bg-light text-center py-5" id="sec-27b9">
-    <div class="container position-relative">
-        <div class="row justify-content-center align-items-center">
-            <div class="col">
-                <img class="img-fluid" src="../../../assets/home-page.png" id="background-image" alt="Findify">
-                <div class="position-absolute top-50 start-50 translate-middle">
-                    <h1 class="display-4 text-center">Findify</h1>
-                    <div class="btn-group mt-3" role="group">
-                        <p id="buttons"><a [routerLink]="['/lost-items']" class="btn btn-custom text-uppercase">изгубено</a>|<a
-                                [routerLink]="['/found-items']" class="btn btn-custom text-uppercase">најдено</a></p>
+<section class="bg-gray-100 text-center py-20" id="sec-27b9">
+    <div class="container relative mx-auto">
+        <div class="flex justify-center items-center">
+            <div class="relative w-full">
+                <img class="w-auto max-w-full h-auto" style="margin: auto;" src="../../../assets/home-page.png" id="background-image" alt="Findify">
+                <div class="absolute inset-0 flex flex-col justify-center items-center">
+                    <h1 class="text-4xl lg:text-5xl font-bold">Findify</h1>
+                    <div class="mt-3 flex space-x-2" id="buttons">
+                        <a [routerLink]="['/lost-items']" class="uppercase bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">изгубено</a>
+                        <span class="mx-2">|</span>
+                        <a [routerLink]="['/found-items']" class="uppercase bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">најдено</a>
                     </div>
                 </div>
             </div>

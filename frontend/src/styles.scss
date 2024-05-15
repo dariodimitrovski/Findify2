@@ -2,27 +2,27 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import 'bootstrap/scss/bootstrap';
+// @import 'bootstrap/scss/bootstrap';
 
-html,
-body {
-    height: 100%;
-}
+// html,
+// body {
+//     height: 100%;
+// }
 
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-}
+// body {
+//     margin: 0;
+//     font-family: Roboto, "Helvetica Neue", sans-serif;
+// }
 
-html,
-body {
-    height: 100%;
-}
+// html,
+// body {
+//     height: 100%;
+// }
 
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-}
+// body {
+//     margin: 0;
+//     font-family: Roboto, "Helvetica Neue", sans-serif;
+// }
 
 // // body {
 // //     background-image: url('../src/assets/home-page.png');
@@ -78,7 +78,24 @@ body {
 // .row {
 //     margin-left: 10px;
 // }
-// #item_map {
-//     height: 400px;
-//     width: 100%;
-// }
+#item_map {
+    height: 558px;
+    width: 100%;
+}
+
+.custom-radio:checked {
+    background-color: #2abbca;
+    border: 1px solid black;
+    appearance: none;
+    border-radius: 90%;
+}
+
+.custom-container {
+    padding: 0;
+}
+
+.btn {
+    margin-top: 10px;
+    background-color: #2abbca;
+    border-color: #2abbca;
+}

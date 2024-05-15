@@ -5,7 +5,6 @@ import { NgFor } from '@angular/common';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { Router, RouterLink } from '@angular/router';
-import { UserService } from '../../services/user.service';
 import { HomeComponent } from '../home/home.component';
 import { Category } from '../../models/Category';
 import { CategoryService } from '../../services/category.service';
