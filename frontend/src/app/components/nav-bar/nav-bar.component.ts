@@ -9,6 +9,7 @@ import { UserService } from '../../services/user.service';
 import { PendingComponent } from '../pending/pending.component';
 import { YourPostsComponent } from '../your-posts/your-posts.component';
 import { UpdateProfileComponent } from '../update-profile/update-profile.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-nav-bar',
@@ -21,8 +22,9 @@ export class NavBarComponent implements OnInit {
 
   loggedIn: boolean = false;
   currentUser: User | undefined
+  userImage: any
 
-  constructor(private authService: AuthService, private router: Router, private userService: UserService) {
+  constructor(private authService: AuthService, private router: Router, private userService: UserService, private sanitizer: DomSanitizer) {
      this.currentUser = JSON.parse(localStorage.getItem('user')!!)
    }
 
@@ -36,6 +38,11 @@ export class NavBarComponent implements OnInit {
     this.authService.getCurrentUser().subscribe((user) => {
       this.currentUser = user;
     })
+
+    this.userService.getUserImage(this.currentUser?.id!!).subscribe((imageDate) => {
+      const imageUrl = URL.createObjectURL(new Blob([imageDate]));
+      this.userImage = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+   })
 
   }
 

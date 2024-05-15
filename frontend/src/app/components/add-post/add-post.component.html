@@ -1,7 +1,4 @@
-<!-- <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <img class="img-fluid" src="../../../assets/home-page.png" id="background-image" alt="Findify" style="width: 90%; height: auto;">
-</div> -->
-<div class="container-fluid h-100" id="newPostModal">
+<!-- <div class="container-fluid h-100" id="newPostModal">
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-md-4">
             <div class="card">
@@ -66,6 +63,83 @@
                     </form>
                 </div>
                 <div>
+                    <app-map></app-map>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="fixed inset-0 bg-black bg-opacity-50 z-50 overflow-x-hidden overflow-y-auto" id="newPostModal">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="w-full max-w-3xl">
+            <div class="bg-white rounded-lg shadow-lg flex">
+                <div class="w-full p-6 modal-content">
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <div class="mb-4">
+                            <label for="itemTitle" class="block text-sm font-medium text-gray-700">Наслов</label>
+                            <input type="text" class="form-input mt-1 block w-full" id="itemTitle" placeholder="Name"
+                                formControlName="title">
+                        </div>
+                        <div class="mb-4">
+                            <label for="inputCategory"
+                                class="block text-sm font-medium text-gray-700">Категорија</label>
+                            <select id="inputCategory" class="form-select mt-1 block w-full" formControlName="category">
+                                <option>Choose...</option>
+                                <!-- Replace with Angular loop -->
+
+                                @for (category of categories; track category.id) {
+                                <option>{{ category.categoryName }}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="exampleFormControlTextarea1"
+                                class="block text-sm font-medium text-gray-700">Опис</label>
+                            <textarea class="form-textarea mt-1 block w-full" id="exampleFormControlTextarea1" rows="3"
+                                placeholder="Write short description..." formControlName="description"></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label for="inputMunicipality"
+                                class="block text-sm font-medium text-gray-700">Општина</label>
+                            <select id="inputMunicipality" class="form-select mt-1 block w-full"
+                                formControlName="municipality">
+                                <option selected>Choose...</option>
+                                <!-- Replace with Angular loop -->
+                                @for (municipality of municipalities; track municipality.id) {
+                                <option>{{ municipality.name }}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="formFileSm" class="block text-sm font-medium text-gray-700">Прикачи
+                                фотографија</label>
+                            <input class="form-input mt-1 block w-full" id="formFileSm" type="file"
+                                (change)="onFileSelected($event)">
+                        </div>
+                        <div class="mb-4">
+                            <fieldset>
+                                <label class="block text-sm font-medium text-gray-700">Тип</label>
+                                <div class="mt-2 space-y-2">
+                                    <div class="flex items-center">
+                                        <input class="form-radio h-4 w-4 text-blue-600 custom-radio" type="radio" name="lostorfound"
+                                            id="lost" value="lost" formControlName="lostorfound" checked>
+                                        <label for="lost" class="ml-2 block text-sm text-gray-700">Изгубено</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input class="form-radio h-4 w-4 text-blue-600 custom-radio" type="radio" name="lostorfound"
+                                            id="found" value="found" formControlName="lostorfound">
+                                        <label for="found" class="ml-2 block text-sm text-gray-700">Најдено</label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit"
+                                class="btn bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Објави</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="w-full">
                     <app-map></app-map>
                 </div>
             </div>
