@@ -1,0 +1,32 @@
+#spring.application.name=backend
+#spring.datasource.url=jdbc:postgresql://localhost:5432/findify
+#spring.datasource.username=postgres
+#spring.datasource.password=admin
+#spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+#spring.jpa.hibernate.ddl-auto=none
+#spring.jpa.show-sql=true
+#spring.flyway.locations=db/migrations
+
+spring:
+  application:
+    name: 'backend'
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/Findify'
+    username: 'postgres'
+    password: 'dario123'
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: 'org.hibernate.dialect.PostgreSQLDialect'
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+  flyway:
+    locations: db/migrations
+
+security:
+  key: 'findifysecretkeyfindifysecretkeyfindifysecretkeyfindifysecretkeyfindifysecretkey'
+
+server:
+  max-http-request-header-size: 800KB

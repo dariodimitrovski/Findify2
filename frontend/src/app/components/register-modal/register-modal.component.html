@@ -1,0 +1,75 @@
+<!-- <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <img class="img-fluid" src="../../../assets/home-page.png" id="background-image" alt="Findify" style="width: 90%; height: auto;">
+</div> -->
+<div  class="modal-fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Регистрирај се</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" [routerLink]="['/home']"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="form-row mb-3">
+                        <div class="form-group mb-3">
+                            <label>Име</label>
+                            <input type="text" formControlName="firstName" class="form-control" placeholder="First Name"
+                                [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }" />
+                            <div *ngIf="submitted && f['firstName'].errors" class="invalid-feedback">
+                                <div *ngIf="f['firstName'].errors['required']">First name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Презиме</label>
+                        <input type="text" formControlName="lastName" class="form-control" placeholder="Last Name"
+                            [ngClass]="{ 'is-invalid': submitted && f['lastName'].errors }" />
+                        <div *ngIf="submitted && f['lastName'].errors" class="invalid-feedback">
+                            <div *ngIf="f['lastName'].errors['required']">Last name is required</div>
+                        </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Е-пошта</label>
+                    <input type="text" formControlName="email" class="form-control" placeholder="Email"
+                        [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+                    <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                        <div *ngIf="f['email'].errors['required']">Email is required</div>
+                        <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+                    </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Лозинка</label>
+                        <input type="password" formControlName="password" class="form-control" placeholder="Password"
+                            [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+                        <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                            <div *ngIf="f['password'].errors['required']">Password is required</div>
+                            <div *ngIf="f['password'].errors['minlength']">
+                                Password must be at least 6 characters
+                            </div>
+                            <div *ngIf="f['password'].errors['maxlength']">
+                                Password must not exceed 40 characters
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Телефонски број</label>
+                        <input type="text" formControlName="phoneNumber" class="form-control"  placeholder="Phone Number" appPhone
+                            [ngClass]="{ 'is-invalid': submitted && f['phoneNumber'].errors }" />
+                        <div *ngIf="submitted && f['phoneNumber'].errors" class="invalid-feedback">
+                            <div *ngIf="f['phoneNumber'].errors['required']">Phone number is required</div>
+                            <div *ngIf="f['phoneNumber'].errors['minlength']">
+                                Phone number must be exactly 9 digits
+                            </div>
+                            <div *ngIf="f['phoneNumber'].errors['maxlength']">
+                                Phone number must be exactly 9 digits
+                            </div>
+                        </div>
+                    </div>
+    
+                    <button type="submit" class="btn btn-primary">Регистрирај се</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

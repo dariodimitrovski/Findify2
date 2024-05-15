@@ -1,0 +1,28 @@
+<div class="container rounded bg-white mt-5 mb-5 body-image">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-5" width="150px" [src]="userImage">
+                <span class="font-weight-bold">{{currentUser?.firstName}} {{currentUser?.lastName}}</span>
+                <span class="text-black-50">{{currentUser?.email}}</span>
+                <span> </span>
+            </div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Поставки на профилот</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Име</label><input type="text" class="form-control" placeholder={{currentUser?.firstName}} disabled></div>
+                    <div class="col-md-6"><label class="labels">Презиме</label><input type="text" class="form-control" placeholder={{currentUser?.lastName}} disabled></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Телефонски број</label><input type="text" class="form-control" placeholder={{currentUser?.phoneNumber}} disabled></div>
+                    <div class="col-md-12"><label class="labels">Емаил</label><input type="text" class="form-control" placeholder={{currentUser?.email}} disabled></div>
+                </div>
+                <div class="mt-5 text-center"><button class="btn btn-outline-primary" type="button" [routerLink]="['/update-profile', currentUser?.id]">Измени го профилот</button></div>
+            </div>
+        </div>
+    </div>
+</div>

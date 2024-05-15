@@ -1,0 +1,67 @@
+<div class="container-fluid" id="cardModal">
+  <div class="row justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Измени го профилот</h4>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+              <div class="form-group row">
+                <label for="firstName" class="col-4 col-form-label">Име</label>
+                <div class="col-8">
+                  <input id="firstName" name="firstName" placeholder={{currentUser?.firstName}} class="form-control here"
+                    type="text" formControlName="firstName">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="lastName" class="col-4 col-form-label">Презиме</label>
+                <div class="col-8">
+                  <input id="lastName" name="lastName" placeholder={{currentUser?.lastName}} class="form-control here"
+                    type="text" formControlName="lastName">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="email" class="col-4 col-form-label">Емаил</label>
+                <div class="col-8">
+                  <input id="email" name="email" placeholder={{currentUser?.email}} class="form-control here" disabled
+                    type="text">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="phoneNumber" class="col-4 col-form-label">Телефонски број</label>
+                <div class="col-8">
+                  <input id="phoneNumber" name="phoneNumber" placeholder={{currentUser?.phoneNumber}} appPhone
+                    class="form-control here" type="text" formControlName="phoneNumber">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="newpass" class="col-4 col-form-label">Нова лозинка</label>
+                <div class="col-8">
+                  <input id="newpass" name="newpass" placeholder="New Password" class="form-control here"
+                    type="password" formControlName="password">
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="formFileSm" class="form-label">Прикачи фотографија</label>
+                <input class="form-control form-control-sm" placeholder="Choose from gallery" id="formFileSm" type="file" formControlName="image"
+                    (change)="onFileSelected($event)">
+            </div>
+
+              <div class="form-group row">
+                <div class="offset-4 col-8">
+                  <button name="submit" type="submit" class="btn btn-primary">Зачувај</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

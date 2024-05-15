@@ -1,0 +1,34 @@
+<div class="card">
+    <div class="card-body modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title text-uppercase">Filter</h5>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmitFilter()">
+            <div class="mb-3">
+                <label for="itemTitle" class="form-label">Title</label>
+                <input type="text" class="form-control" id="itemTitle" placeholder="Name" formControlName="title">
+            </div>
+            <div class="mb-3">
+                <label for="inputCategory" class="form-label">Category</label>
+                <select id="inputCategory" class="form-control" formControlName="category">
+                    <option>Choose...</option>
+                    @for(c of categories; track c.id){
+                    <option>{{c.categoryName}}</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="inputMunicipality" class="form-label">Municipality</label>
+                <select id="inputMunicipality" class="form-control" formControlName="municipality">
+                    <option selected>Choose...</option>
+                    @for(m of municipalities; track m.id) {
+                    <option>{{m.name}}</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
