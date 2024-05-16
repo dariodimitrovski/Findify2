@@ -17,7 +17,7 @@ import java.time.LocalDateTime
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api")
+@RequestMapping("/api/posts")
 class PostController(
     private val postService: PostService,
     private val categoryService: CategoryService,
@@ -52,7 +52,7 @@ class PostController(
         return ResponseEntity.ok(postService.findByStatus(PostStatus.ACTIVE_LOST, pageNum, sizeNum).content)
     }
 
-    @GetMapping("/posts/size")
+    @GetMapping("/lost-items-size")
     fun getLostItemsSize(): Long{
         return this.postService.findByStatus(PostStatus.ACTIVE_LOST, 0, 1).totalElements
     }
@@ -68,6 +68,10 @@ class PostController(
 
         return ResponseEntity.ok(postService.findByStatus(PostStatus.ACTIVE_FOUND, pageNum, sizeNum).content)
     }
+    @GetMapping("/found-items-size")
+    fun getFoundItemsSize(): Long{
+        return this.postService.findByStatus(PostStatus.ACTIVE_FOUND, 0, 1).totalElements
+    }
 
     @GetMapping("/pending-items")
     fun getPendingItems(
@@ -81,14 +85,19 @@ class PostController(
         return ResponseEntity.ok(postService.findByStatus(PostStatus.PENDING_LOST, pageNum, sizeNum).content + postService.findByStatus(PostStatus.PENDING_FOUND, pageNum, sizeNum).content)
     }
 
-    @GetMapping("/posts/{id}")
+    @GetMapping("/pending-items-size")
+    fun getPendingItemsSize(): Long{
+        return this.postService.findByStatus(PostStatus.PENDING_LOST, 0, 1).totalElements + this.postService.findByStatus(PostStatus.PENDING_FOUND, 0, 1).totalElements
+    }
+
+    @GetMapping("/{id}")
     fun getPost(@PathVariable id: Long): ResponseEntity<Post> {
         return postService.findById(id)?.let {
             ResponseEntity.ok(it)
         } ?: ResponseEntity.notFound().build()
     }
 
-    @GetMapping("/posts/user/{id}")
+    @GetMapping("/user/{id}")
     fun getPostsByUserId(@PathVariable id: Long): ResponseEntity<List<Post>> {
         return postService.listAll()
             .stream()
@@ -97,7 +106,7 @@ class PostController(
             .let { ResponseEntity.ok(it) }
     }
 
-    @PutMapping("/posts/{id}")
+    @PutMapping("/update/{id}")
     fun updatePost(@PathVariable id: Long): ResponseEntity<Post> {
         val post = postService.findById(id)
         val postStatus = if (post?.state == PostStatus.PENDING_LOST) {
@@ -109,11 +118,11 @@ class PostController(
         return ResponseEntity.ok(post)
     }
 
-    @DeleteMapping("/posts/{id}")
+    @DeleteMapping("/delete/{id}")
     fun deletePost(@PathVariable id: Long) = postService.deleteById(id)
 
 
-    @PostMapping("/new-post")
+    @PostMapping("/add/new-post")
     fun addPost(
         @RequestParam title: String,
         @RequestParam category: String,

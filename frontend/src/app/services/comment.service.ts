@@ -10,13 +10,13 @@ export class CommentService {
 
   constructor(private http: HttpClient) { }
 
-  url = 'http://localhost:8080/api'
+  url = 'http://localhost:8080/api/comments'
 
   addComment(form: FormData): Observable<Comment> {
-    return this.http.post<Comment>(`${this.url}/comments`, form)
+    return this.http.post<Comment>(`${this.url}/add`, form)
   }
 
   getCommentsForPost(postId: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`${this.url}/comments/${postId}`)
+    return this.http.get<Comment[]>(`${this.url}/${postId}`)
   }
 }

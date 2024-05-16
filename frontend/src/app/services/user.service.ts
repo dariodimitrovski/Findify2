@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-  url = 'http://localhost:8080/api'
+  url = 'http://localhost:8080/api/users'
 
   constructor(private http: HttpClient) { }
 
@@ -23,11 +23,11 @@ export class UserService {
   }
 
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.url}/users/all`)
+    return this.http.get<User[]>(`${this.url}`)
   }
 
   deleteUser(userId: number): Observable<any> {
-    return this.http.delete<User>(`${this.url}/users/${userId}`)
+    return this.http.delete<User>(`${this.url}/delete/${userId}`)
   }
   
   // updateUser(userId: number, userData: any): Observable<User> {
@@ -40,7 +40,7 @@ export class UserService {
 
   getUserImage(id: number){
     console.log("eve slika")
-    return this.http.get(`${this.url}/mia/image/${id}`, {
+    return this.http.get(`${this.url}/image/${id}`, {
       responseType: 'blob'
     })
   }

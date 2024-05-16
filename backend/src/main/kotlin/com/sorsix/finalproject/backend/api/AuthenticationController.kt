@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
 class AuthenticationController(
     private val hashService: HashService,
     private val tokenService: TokenService,

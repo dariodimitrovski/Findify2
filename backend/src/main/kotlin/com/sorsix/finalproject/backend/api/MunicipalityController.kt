@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/municipalities")
 class MunicipalityController(private val municipalityService: MunicipalityService) {
 
-    @GetMapping("/municipalities")
+    @GetMapping()
     fun getMunicipalities(): ResponseEntity<List<Municipality>> {
         return ResponseEntity.ok().body(municipalityService.listAll())
     }

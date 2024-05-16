@@ -11,15 +11,15 @@ import org.springframework.web.multipart.MultipartFile
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 class UserController(private val userService: UserService, private val hashService: HashService) {
-    @GetMapping("/users/all")
+    @GetMapping()
     fun allUsers(): ResponseEntity<List<User>> {
         return ResponseEntity.ok(userService.listUsers())
     }
 
-    @DeleteMapping("/users/{id}")
-    fun deletePost(@PathVariable id: Long) = userService.deleteById(id)
+    @DeleteMapping("/delete/{id}")
+    fun deleteUser(@PathVariable id: Long) = userService.deleteById(id)
 
 //    @PutMapping("/users/{id}")
 //    fun updateUser(
@@ -54,7 +54,7 @@ class UserController(private val userService: UserService, private val hashServi
         return  ResponseEntity.ok().body(response)
     }
 
-    @GetMapping("/mia/image/{id}")
+    @GetMapping("/image/{id}")
     fun getUserImage(@PathVariable id: Long): ResponseEntity<Any> {
 //        val image: ByteArray = userService.getUserImage()
         val image: ByteArray = userService.findById(id)!!.image
