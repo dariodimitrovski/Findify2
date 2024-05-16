@@ -5,8 +5,6 @@ import { PostService } from '../../services/post.service';
 import { Post } from '../../models/Post';
 import { RouterLink } from '@angular/router';
 import { FilterSectionComponent } from '../filter-section/filter-section.component';
-import { MatDialog } from '@angular/material/dialog';
-import { PostDetailsDialogComponent } from '../post-details-dialog/post-details-dialog.component';
 import { NgFor, NgIf } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Category } from '../../models/Category';
@@ -17,11 +15,13 @@ import { FilterService } from '../../services/filter.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, mergeMap, of } from 'rxjs';
 import { FooterComponent } from '../footer/footer.component';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-lost-items',
   standalone: true,
-  imports: [NavBarComponent, PostDetailsModalComponent, RouterLink, FilterSectionComponent, NgFor, ReactiveFormsModule, NgIf, FooterComponent],
+  imports: [NavBarComponent, PostDetailsModalComponent, RouterLink, FilterSectionComponent, NgFor, ReactiveFormsModule, NgIf, FooterComponent, MatPaginatorModule],
   templateUrl: './lost-items.component.html',
   styleUrl: './lost-items.component.scss'
 })
@@ -46,6 +46,17 @@ export class LostItemsComponent {
   query$: Subject<string> = new Subject()
   q: string = ''
 
+  totalItems = 100; //tuka od backend da se zema broj na total items
+  pageSize = 10;
+  currentPage = 0;
+
+  // items: Post[] = []; // Fetch data for the current page
+
+  pageChanged(event: PageEvent) {
+    this.currentPage = event.pageIndex;
+    this.getLostItems(this.currentPage, this.pageSize);
+  }
+
   ngOnInit(): void {
     this.getMunicipalities();
     this.getCategories();
@@ -67,7 +78,10 @@ export class LostItemsComponent {
         this.onSubmitFilter()
       })
 
-    this.getLostItems();
+    this.getItemSize();
+    this.getLostItems(this.currentPage, this.pageSize);
+    
+    
   }
 
   search(query: string) {
@@ -119,10 +133,10 @@ export class LostItemsComponent {
     this.categoryService.getCategories().subscribe((it) => {
       this.categories = it;
     })
-  }
-
-  getLostItems() {
-    this.postService.getLostItems().pipe(
+  } 
+ 
+  getLostItems(page: number, size: number) {
+    this.postService.getLostItems(page, size).pipe(
       mergeMap(data => {
         const requests = data.map(element => {
           console.log("fetching images while not logged in");
@@ -148,6 +162,19 @@ export class LostItemsComponent {
         console.error('Error fetching lost items:', error);
       }
     });
+  }
+
+  getItemSize(){
+    this.postService.getLostItemsSize().subscribe({
+      next: (size) => {
+        this.totalItems = size;
+        console.log(size)
+      },
+      error: (error) => {
+        console.error('Error fetching lost items size:', error);
+      }
+    }
+    );
   }
 
   reloadPage() {

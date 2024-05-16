@@ -26,9 +26,15 @@ export class PostService {
     console.log("Posted.")
     return this.http.post<Post>(`${this.url}/new-post`, formData)
   }
-  getLostItems(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.url}/lost-items`)
+
+  getLostItems(page: number = 0, size: number = 10): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.url}/lost-items?page=${page}&size=${size}`)
   }
+
+  getLostItemsSize(): Observable<any>{
+    return this.http.get<any>(`${this.url}/posts/size`)
+  }
+
   getFoundItems(): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.url}/found-items`)
   }

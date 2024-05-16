@@ -52,6 +52,11 @@ class PostController(
         return ResponseEntity.ok(postService.findByStatus(PostStatus.ACTIVE_LOST, pageNum, sizeNum).content)
     }
 
+    @GetMapping("/posts/size")
+    fun getLostItemsSize(): Long{
+        return this.postService.findByStatus(PostStatus.ACTIVE_LOST, 0, 1).totalElements
+    }
+
     @GetMapping("/found-items")
     fun getFoundItems(
         @RequestParam(required = false) page: Int?,
