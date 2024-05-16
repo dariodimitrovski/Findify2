@@ -1,133 +1,70 @@
-<!-- <div class="container-fluid h-100" id="newPostModal">
-    <div class="row h-100 justify-content-center align-items-center">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Нова објава</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                            [routerLink]="['/home']"></button>
-                    </div>
-                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                        <div class="mb-3">
-                            <label for="itemTitle" class="form-label">Наслов</label>
-                            <input type="text" class="form-control" id="itemTitle" placeholder="Name"
-                                formControlName="title">
-                        </div>
-                        <div class="mb-3">
-                            <label for="inputCategory" class="form-label">Категорија</label>
-                            <select id="inputCategory" class="form-control" formControlName="category">
-                                <option>Choose...</option>
-                                @for(c of categories; track c.id){
-                                <option>{{c.categoryName}}</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Опис</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                placeholder="Write short description..." formControlName="description"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="inputMunicipality" class="form-label">Општина</label>
-                            <select id="inputMunicipality" class="form-control" formControlName="municipality">
-                                <option selected>Choose...</option>
-                                @for(m of municipalities; track m.id) {
-                                <option>{{m.name}}</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="formFileSm" class="form-label">Прикачи фотографија</label>
-                            <input class="form-control form-control-sm" id="formFileSm" type="file"
-                                (change)="onFileSelected($event)">
-                        </div>
-                        <div class="mb-3">
-                            <fieldset>
-                                <label class="form-label">Тип</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="lostorfound" id="lost"
-                                        value="lost" formControlName="lostorfound" checked>
-                                    <label class="form-check-label" for="lost">Изгубено</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="lostorfound" id="found"
-                                        value="found" formControlName="lostorfound">
-                                    <label class="form-check-label" for="found">Најдено</label>
-                                </div>
-                            </fieldset>
-                        </div>
-                        <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary">Објави</button>
-                        </div>
-                    </form>
-                </div>
-                <div>
-                    <app-map></app-map>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 <div class="fixed inset-0 bg-black bg-opacity-50 z-50 overflow-x-hidden overflow-y-auto" id="newPostModal">
     <div class="flex items-center justify-center min-h-screen">
         <div class="w-full max-w-3xl">
             <div class="bg-white rounded-lg shadow-lg flex">
                 <div class="w-full p-6 modal-content">
                     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                        <div class="mb-4">
-                            <label for="itemTitle" class="block text-sm font-medium text-gray-700">Наслов</label>
-                            <input type="text" class="form-input mt-1 block w-full" id="itemTitle" placeholder="Name"
-                                formControlName="title">
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputCategory"
-                                class="block text-sm font-medium text-gray-700">Категорија</label>
-                            <select id="inputCategory" class="form-select mt-1 block w-full" formControlName="category">
-                                <option>Choose...</option>
-                                <!-- Replace with Angular loop -->
 
+                        <div class="mb-4">
+                            <label for="base-input"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Наслов</label>
+                            <input type="text" id="base-input" formControlName="title" placeholder="Име на предметот"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        </div>
+
+                        <div class="mb-5">
+                            <label for="base-input"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Опис</label>
+                            <textarea id="message" rows="4" formControlName="description"
+                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Напишете краток опис за предметот..."></textarea>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="categories"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Категорија</label>
+                            <select id="categories" formControlName="category"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected>Одбери категорија...</option>
                                 @for (category of categories; track category.id) {
-                                <option>{{ category.categoryName }}</option>
-                                }
+                                    <option>{{ category.categoryName }}</option>
+                                    }
                             </select>
                         </div>
+
                         <div class="mb-4">
-                            <label for="exampleFormControlTextarea1"
-                                class="block text-sm font-medium text-gray-700">Опис</label>
-                            <textarea class="form-textarea mt-1 block w-full" id="exampleFormControlTextarea1" rows="3"
-                                placeholder="Write short description..." formControlName="description"></textarea>
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputMunicipality"
-                                class="block text-sm font-medium text-gray-700">Општина</label>
-                            <select id="inputMunicipality" class="form-select mt-1 block w-full"
-                                formControlName="municipality">
-                                <option selected>Choose...</option>
-                                <!-- Replace with Angular loop -->
+                            <label for="categories"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Општина</label>
+                            <select id="categories" formControlName="municipality"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected>Одбери општина...</option>
                                 @for (municipality of municipalities; track municipality.id) {
-                                <option>{{ municipality.name }}</option>
-                                }
+                                    <option>{{ municipality.name }}</option>
+                                    }
                             </select>
                         </div>
+
                         <div class="mb-4">
-                            <label for="formFileSm" class="block text-sm font-medium text-gray-700">Прикачи
-                                фотографија</label>
-                            <input class="form-input mt-1 block w-full" id="formFileSm" type="file"
-                                (change)="onFileSelected($event)">
+
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                for="file_input">Прикачи фотографија</label>
+                            <input (change)="onFileSelected($event)"
+                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                id="file_input" type="file">
                         </div>
                         <div class="mb-4">
                             <fieldset>
                                 <label class="block text-sm font-medium text-gray-700">Тип</label>
                                 <div class="mt-2 space-y-2">
                                     <div class="flex items-center">
-                                        <input class="form-radio h-4 w-4 text-blue-600 custom-radio" type="radio" name="lostorfound"
-                                            id="lost" value="lost" formControlName="lostorfound" checked>
+                                        <input class="form-radio h-4 w-4 text-blue-600 custom-radio" type="radio"
+                                            name="lostorfound" id="lost" value="lost" formControlName="lostorfound"
+                                            checked>
                                         <label for="lost" class="ml-2 block text-sm text-gray-700">Изгубено</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input class="form-radio h-4 w-4 text-blue-600 custom-radio" type="radio" name="lostorfound"
-                                            id="found" value="found" formControlName="lostorfound">
+                                        <input class="form-radio h-4 w-4 text-blue-600 custom-radio" type="radio"
+                                            name="lostorfound" id="found" value="found" formControlName="lostorfound">
                                         <label for="found" class="ml-2 block text-sm text-gray-700">Најдено</label>
                                     </div>
                                 </div>
@@ -135,7 +72,7 @@
                         </div>
                         <div class="text-center">
                             <button type="submit"
-                                class="btn bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Објави</button>
+                                class="btn bg-blue-600 text-white px-4 py-2 rounded hover:bg-gray-800">Објави</button>
                         </div>
                     </form>
                 </div>
