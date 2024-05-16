@@ -8,8 +8,6 @@
                 </div>
                 <div class="modal-body px-6 py-4">
                     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-4">
-
-
                         <label for="email-address-icon"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Е-пошта</label>
                         <div class="relative">
@@ -41,6 +39,8 @@
                         <div *ngIf="submitted && f['password'].errors" class="text-red-500 text-sm mt-1">
                             <div *ngIf="f['password'].errors['required']">Password is required</div>
                         </div>
+
+                        <p for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-4">Немаш корисничка сметка? <a [routerLink]="['/signup']" class="text-blue-600">Регистрирај се!</a></p>
 
 
                         <!-- <div class="mb-4">
