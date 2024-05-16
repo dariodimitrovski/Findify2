@@ -46,7 +46,7 @@ export class LostItemsComponent {
   query$: Subject<string> = new Subject()
   q: string = ''
 
-  totalItems = 100; //tuka od backend da se zema broj na total items
+  totalItems =  this.getItemSize; //tuka od backend da se zema broj na total items
   pageSize = 10;
   currentPage = 0;
 
