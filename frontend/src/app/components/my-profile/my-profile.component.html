@@ -1,28 +1,49 @@
-<div class="container rounded bg-white mt-5 mb-5 body-image">
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img class="rounded-circle mt-5" width="150px" [src]="userImage">
-                <span class="font-weight-bold">{{currentUser?.firstName}} {{currentUser?.lastName}}</span>
-                <span class="text-black-50">{{currentUser?.email}}</span>
-                <span> </span>
+<div class="container mx-auto px-4">
+    <div class="bg-white rounded-lg shadow-lg p-6 details">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- User Image Column -->
+            <div class="col-span-1 md:col-span-1 flex items-center justify-center">
+                <div class="flex flex-col items-center justify-center p-6 py-8 md:p-3 md:py-5 border-b">
+                    <img class="rounded-full mt-5 w-36 md:w-24" [src]="userImage" alt="User Image">
+                    <span class="font-bold text-xl mt-3">{{currentUser?.firstName}} {{currentUser?.lastName}}</span>
+                    <span class="text-gray-500">{{currentUser?.email}}</span>
+                </div>
             </div>
-        </div>
-        <div class="col-md-5 border-right">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Поставки на профилот</h4>
+            <!-- User Information Column -->
+            <div class="col-span-1 md:col-span-2">
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="mb-2">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Име</label>
+                        <input type="text" id="name" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{currentUser?.firstName}}" disabled>
+                    </div>
+                    <div class="mb-2">
+                        <label for="surname"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Презиме</label>
+                        <input type="text" id="surname" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{currentUser?.lastName}}" disabled>
+                    </div>
+                    <div class="mb-2">
+                        <label for="number"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Телефонски број</label>
+                        <input type="text" id="number" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{currentUser?.phoneNumber}}" disabled>
+                    </div>
+                    <div class="mb-2">
+                        <label for="email"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Е-пошта</label>
+                        <input type="text" id="email" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{currentUser?.email}}" disabled>
+                    </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Име</label><input type="text" class="form-control" placeholder={{currentUser?.firstName}} disabled></div>
-                    <div class="col-md-6"><label class="labels">Презиме</label><input type="text" class="form-control" placeholder={{currentUser?.lastName}} disabled></div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Телефонски број</label><input type="text" class="form-control" placeholder={{currentUser?.phoneNumber}} disabled></div>
-                    <div class="col-md-12"><label class="labels">Емаил</label><input type="text" class="form-control" placeholder={{currentUser?.email}} disabled></div>
-                </div>
-                <div class="mt-5 text-center"><button class="btn btn-outline-primary" type="button" [routerLink]="['/update-profile', currentUser?.id]">Измени го профилот</button></div>
+                
             </div>
+            <!-- Additional Elements Column -->
+            <div class="col-span-1 md:col-span-1 flex justify-center items-center">
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="text-center">
+                        <button type="submit" [routerLink]="['/update-profile', currentUser?.id]"
+                            class="btn bg-blue-600 text-white px-4 py-2 rounded hover:bg-gray-800">Измени го профилот</button>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>
