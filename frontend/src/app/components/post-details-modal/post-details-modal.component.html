@@ -1,60 +1,58 @@
-<div class="container mx-auto">
+<div class="container mx-auto px-4">
     <div class="flex justify-center items-center min-h-screen">
-        <div class="w-full max-w-3xl">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Column for post details -->
-                    <div>
-                        <div class="post-details">
-                            <img [src]="post?.image" class="w-full rounded-lg" alt="Lost item">
-                            <div class="mt-4">
-                                <h2 class="text-xl font-semibold mb-2">{{post?.title}}</h2>
-                                <p class="text-gray-600">{{post?.description}}</p>
+        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-screen-xl details-container">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Column for post details -->
+                <div>
+                    <div class="post-details">
+                        <img [src]="post?.image" class="w-full rounded-lg" alt="Lost item">
+                        <div class="mt-4">
+                            <h2 class="text-xl font-semibold mb-2">{{post?.title}}</h2>
+                            <p class="text-gray-600">{{post?.description}}</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <p class="text-sm text-gray-500">Category: {{post?.category?.categoryName}}</p>
+                                <p class="text-sm text-gray-500">Municipality: {{post?.municipality?.name}}</p>
+                                <p class="text-sm text-gray-500">Posted by: {{post?.user?.firstName}} {{post?.user?.lastName}}</p>
                             </div>
-                            <div class="flex justify-between items-center mt-4">
-                                <div>
-                                    <p class="text-sm text-gray-500">Category: {{post?.category?.categoryName}}</p>
-                                    <p class="text-sm text-gray-500">Municipality: {{post?.municipality?.name}}</p>
-                                    <p class="text-sm text-gray-500">Posted by: {{post?.user?.firstName}} {{post?.user?.lastName}}</p>
-                                </div>
-                                <div *ngIf="currentUser?.role === 'ROLE_ADMIN'">
-                                    <div *ngIf="!post?.state?.includes('ACTIVE')">
-                                        <button type="button" class="btn btn-success me-2" (click)="approve()">
-                                            <i class="fas fa-check"></i> Approve
-                                        </button>
-                                    </div>
-                                    <button type="button" class="btn btn-danger" (click)="decline()">
-                                        <i class="fas fa-times"></i> Decline
+                            <div *ngIf="currentUser?.role === 'ROLE_ADMIN'" class="flex space-x-2">
+                                <div *ngIf="!post?.state?.includes('ACTIVE')">
+                                    <button type="button" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600" (click)="approve()">
+                                        <i class="fas fa-check"></i> Approve
                                     </button>
                                 </div>
+                                <button type="button" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600" (click)="decline()">
+                                    <i class="fas fa-times"></i> Delete
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <!-- Column for comments -->
-                    <div>
-                        <div class="comments">
-                            <h2 class="text-xl font-semibold mb-4">Comments</h2>
-                            <div class="comment-container space-y-4 overflow-y-auto" style="max-height: 385px;">
-                                <!-- Loop through comments -->
-                                @for (comment of comments; track comment.id) {
-                                    <div class="bg-gray-100 p-4 rounded-lg">
+                </div>
+                <!-- Column for comments -->
+                <div>
+                    <div class="comments">
+                        <h2 class="text-xl font-semibold mb-4">Comments</h2>
+                        <div class="comment-container space-y-4 overflow-y-auto" style="max-height: 350px;">
+                            <!-- Loop through comments -->
+                            @for (comment of comments; track comment.id) {
+                                <div class="bg-gray-100 p-4 rounded-lg">
                                     <p class="font-semibold">{{comment.user.firstName}} {{comment.user.lastName}}</p>
                                     <p>{{comment.comment}}</p>
                                 </div>
-                                }
-                            </div>
-                            <form [formGroup]="form" class="mt-4" (submit)="postComment()">
-                                <div class="flex items-center">
-                                    <textarea class="form-control mb-2 me-2 flex-grow rounded-lg p-2" rows="2" placeholder="Enter your comment" formControlName="comment"></textarea>
-                                    <button type="button" class="btn btn-primary btn-custom"><i class="fas fa-paper-plane"></i></button>
-                                </div>
-                            </form>
+                            }
                         </div>
+                        <form [formGroup]="form" class="mt-4" (submit)="postComment()">
+                            <div class="flex items-center">
+                                <textarea class="flex-grow bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2 mb-2 mr-2" rows="2" placeholder="Enter your comment" formControlName="comment"></textarea>
+                                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div id="item_map">
-                    <!-- Map component goes here -->
-                </div>
+            </div>
+            <div id="item_map" class="mt-6">
+                <!-- Map component goes here -->
             </div>
         </div>
     </div>

@@ -1,69 +1,73 @@
-.list-group-item {
-    opacity: 50%;
-    font-size: smaller;
-}
+// .list-group-item {
+//     opacity: 50%;
+//     font-size: smaller;
+// }
 
-.card {
-    margin: 80px auto 20px auto;
-}
+// .card {
+//     margin: 80px auto 20px auto;
+// }
 
-.comments-label {
-    margin: 10px 0 5px 5px;
-}
+// .comments-label {
+//     margin: 10px 0 5px 5px;
+// }
 
-.comments-container {
-    padding: 0;
-    margin: 0;
-    width: 435px;
-}
+// .comments-container {
+//     padding: 0;
+//     margin: 0;
+//     width: 435px;
+// }
 
-.btn-custom {
-    background-color: #2abbca;
-    border-color: #2abbca;
-    height: 40px;
-    margin-bottom: 5px;
-}
-.comments {
-    width: 25rem;
-    height: 100%;
+// .btn-custom {
+//     background-color: #2abbca;
+//     border-color: #2abbca;
+//     height: 40px;
+//     margin-bottom: 5px;
+// }
+// .comments {
+//     width: 25rem;
+//     height: 100%;
+// //     display: flex;
+// //     flex-direction: column;
+// }
+// .comment-name {
+//     font-weight: bold;
+// }
+// .center-container {
 //     display: flex;
-//     flex-direction: column;
-}
-.comment-name {
-    font-weight: bold;
-}
-.center-container {
-    display: flex;
-    justify-content: center;
-}
-.card-container {
-    position: relative;
-    display: inline-block;
-}
-.row {
-    margin-left: 0;
-    width: 55rem;
-}
-.col-md-6 {
-    margin: 0 0 5 0;
-    padding: 0;
-}
+//     justify-content: center;
+// }
+// .card-container {
+//     position: relative;
+//     display: inline-block;
+// }
+// .row {
+//     margin-left: 0;
+//     width: 55rem;
+// }
+// .col-md-6 {
+//     margin: 0 0 5 0;
+//     padding: 0;
+// }
 
-.btnIcon {
-    position: absolute;
-    top: 0;
-    left: -40px; /* Adjust as needed */
-    margin-top: 98px;
-}
+// .btnIcon {
+//     position: absolute;
+//     top: 0;
+//     left: -40px; /* Adjust as needed */
+//     margin-top: 98px;
+// }
 
-.btn-mark {
-    border-color: #2abbca;
-    color: #2abbca;
-    margin-right: 10px;
-    width: 140px;
-}
+// .btn-mark {
+//     border-color: #2abbca;
+//     color: #2abbca;
+//     margin-right: 10px;
+//     width: 140px;
+// }
 
-.btn-mark:hover {
-    background-color: #2abbca;
-    color: white;
+// .btn-mark:hover {
+//     background-color: #2abbca;
+//     color: white;
+// }
+
+.details-container {
+    margin: 100px auto 50px auto;
 }

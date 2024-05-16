@@ -79,8 +79,10 @@
 //     margin-left: 10px;
 // }
 #item_map {
-    height: 558px;
+    height: 667px;
     width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .custom-radio:checked {
