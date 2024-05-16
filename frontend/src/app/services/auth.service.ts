@@ -13,7 +13,7 @@ import { User } from '../models/User';
 })
 export class AuthService {
 
-  url = 'http://localhost:8080/api'
+  url = 'http://localhost:8080/api/auth'
   private loginStatusSubject: Subject<boolean> = new Subject<boolean>();
   private currentUserSubject: Subject<User> = new Subject<User>();
 

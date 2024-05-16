@@ -8,7 +8,7 @@ import { Post } from '../models/Post';
 })
 export class FilterService {
 
-  url = 'http://localhost:8080/api'
+  url = 'http://localhost:8080/api/posts'
 
 
 

@@ -30,16 +30,18 @@ class JwtAuthenticationFilter(private val authenticationManager: AuthenticationM
     }
 
     override fun shouldNotFilter(request: HttpServletRequest): Boolean {
-        return request.servletPath.equals("/api/login") ||
-                request.servletPath.equals("/api/register") ||
-                request.servletPath.equals("/api/home") ||
+        return request.servletPath.equals("/api/auth/login") ||
+                request.servletPath.equals("/api/auth/register") ||
+//                request.servletPath.equals("/api/home") ||
                 request.servletPath.equals("/api/municipalities") ||
-                request.servletPath.equals("/api/user/get") ||
-                request.servletPath.equals("/api/lost-items") ||
-                request.servletPath.equals("/api/found-items") ||
+                request.servletPath.equals("/api/users") ||
+//                request.servletPath.equals("/api/user/get") ||
+                request.servletPath.equals("/api/posts") ||
+                request.servletPath.equals("/api/posts/lost-items") ||
+                request.servletPath.equals("/api/posts/found-items") ||
                 request.servletPath.equals("/api/categories") ||
-                request.servletPath.startsWith("/api/posts") ||
-                request.servletPath.startsWith("/api/") && request.servletPath.endsWith("/image")
+                request.servletPath.startsWith("/api/posts/") ||
+                request.servletPath.startsWith("/api") && request.servletPath.endsWith("/image")
     }
 
 

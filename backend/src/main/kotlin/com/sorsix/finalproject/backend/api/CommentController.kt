@@ -9,17 +9,16 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api")
+@RequestMapping("/api/comments")
 class CommentController(private val commentService: CommentService,
                         private val userService: UserService,
                         private val postService: PostService
 ) {
-
-    @GetMapping("/comments/{id}")
+    @GetMapping("/{id}")
     fun getPostComments(@PathVariable id: Long): ResponseEntity<List<Comment>> {
         return ResponseEntity.ok(commentService.findByPostId(id))
     }
-    @PostMapping("/comments")
+    @PostMapping("/add")
     fun addComment(
         @RequestParam postId: Long,
         @RequestParam comment: String,

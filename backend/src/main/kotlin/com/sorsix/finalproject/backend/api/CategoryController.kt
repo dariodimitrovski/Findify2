@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/categories")
 @CrossOrigin
 class CategoryController(private val categoryService: CategoryService) {
 
-    @GetMapping("/categories")
+    @GetMapping()
     fun getCategories(): ResponseEntity<List<Category>> {
         return ResponseEntity.ok().body(categoryService.listAll())
     }

@@ -33,22 +33,22 @@ class SecurityConfig(private val customAuthenticationProvider: CustomAuthenticat
 
 //    @Bean
 //    fun filterChain(http: HttpSecurity): SecurityFilterChain {
-//        http.securityMatcher("/api/**")
+//        http.securityMatcher("/api//")
 //            .authorizeHttpRequests { rmr ->
 //                rmr
-//                    .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
-//                    .requestMatchers(HttpMethod.POST, "/api/register").permitAll()
-//                    .requestMatchers(HttpMethod.GET, "/api/home").permitAll()
+//                    .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+//                    .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+////                    .requestMatchers(HttpMethod.GET, "/api/home").permitAll()
 //                    .requestMatchers(HttpMethod.GET, "/api/municipalities").permitAll()
-//                    .requestMatchers(HttpMethod.GET, "/api/user/get").permitAll()
-//                    .requestMatchers(HttpMethod.POST, "/api/new-post").permitAll()
-//                    .requestMatchers(HttpMethod.GET, "/api/lost-items").permitAll()
-//                    .requestMatchers(HttpMethod.GET, "/api/found-items").permitAll()
+//                    .requestMatchers(HttpMethod.GET, "/api/users").permitAll()
+//                    .requestMatchers(HttpMethod.POST, "/api/posts").permitAll()
+//                    .requestMatchers(HttpMethod.GET, "/api/posts/lost-items").permitAll()
+//                    .requestMatchers(HttpMethod.GET, "/api/posts/found-items").permitAll()
 //                    .requestMatchers(HttpMethod.GET, "/api/categories").permitAll()
-//                    .requestMatchers(HttpMethod.GET, "/api/{}/image}").permitAll()
+////                    .requestMatchers(HttpMethod.GET, "/api/{}/image}").permitAll()
 ////                    .requestMatchers(HttpMethod.GET, "/api/{userId}/image").permitAll()
 //
-//                    .requestMatchers("/api/**").authenticated()
+//                    .requestMatchers("/api///").authenticated()
 //                    .anyRequest().permitAll()
 //            }
 //            .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
@@ -67,15 +67,10 @@ class SecurityConfig(private val customAuthenticationProvider: CustomAuthenticat
         http.csrf { it.disable() }
             .authorizeHttpRequests {
                 it
-                    .requestMatchers(
-                        "**"
-// "/api/auth/**",
-// "/api/artists",
-// "/api/categories",
-// "/api/countries",
-// "/api/uploads"
-                    )
+                    .requestMatchers("/api/**", "/api/**/**")
                     .permitAll()
+                    .requestMatchers("/api/**/**/**")
+                    .authenticated()
 //                    .requestMatchers("/api/new-post")
 //                    .authenticated()
             }
