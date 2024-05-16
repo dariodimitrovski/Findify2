@@ -6,23 +6,36 @@
                 <div>
                     <div class="post-details">
                         <img [src]="post?.image" class="w-full rounded-lg" alt="Lost item">
-                        <div class="mt-4">
-                            <h2 class="text-xl font-semibold mb-2">{{post?.title}}</h2>
-                            <p class="text-gray-600">{{post?.description}}</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div>
+                                <h2 class="text-xl font-semibold mb-2">{{post?.title}}</h2>
+                                <p class="text-gray-600">{{post?.description}}</p>
+                            </div>
+                            <!-- Mark as found button -->
+
+                            <button *ngIf="currentUser.id === post?.user?.id" type="button"
+                                class="px-4 py-2 border border-gray-800 text-gray-800 rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:bg-blue-500 focus:text-white"
+                                (click)="decline()">Mark as found</button>
+
                         </div>
                         <div class="flex justify-between items-center mt-4">
                             <div>
-                                <p class="text-sm text-gray-500">Category: {{post?.category?.categoryName}}</p>
-                                <p class="text-sm text-gray-500">Municipality: {{post?.municipality?.name}}</p>
-                                <p class="text-sm text-gray-500">Posted by: {{post?.user?.firstName}} {{post?.user?.lastName}}</p>
+                                <p class="text-sm text-gray-500">Категорија: {{post?.category?.categoryName}}</p>
+                                <p class="text-sm text-gray-500">Општина: {{post?.municipality?.name}}</p>
+                                <p class="text-sm text-gray-500">Објавено од: {{post?.user?.firstName}}
+                                    {{post?.user?.lastName}}</p>
                             </div>
                             <div *ngIf="currentUser?.role === 'ROLE_ADMIN'" class="flex space-x-2">
                                 <div *ngIf="!post?.state?.includes('ACTIVE')">
-                                    <button type="button" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600" (click)="approve()">
+                                    <button type="button"
+                                        class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                                        (click)="approve()">
                                         <i class="fas fa-check"></i> Approve
                                     </button>
                                 </div>
-                                <button type="button" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600" (click)="decline()">
+                                <button type="button"
+                                    class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                                    (click)="decline()">
                                     <i class="fas fa-times"></i> Delete
                                 </button>
                             </div>
@@ -32,22 +45,32 @@
                 <!-- Column for comments -->
                 <div>
                     <div class="comments">
-                        <h2 class="text-xl font-semibold mb-4">Comments</h2>
+                        <h2 class="text-xl font-semibold mb-4">Коментари</h2>
                         <div class="comment-container space-y-4 overflow-y-auto" style="max-height: 350px;">
                             <!-- Loop through comments -->
                             @for (comment of comments; track comment.id) {
-                                <div class="bg-gray-100 p-4 rounded-lg">
-                                    <p class="font-semibold">{{comment.user.firstName}} {{comment.user.lastName}}</p>
-                                    <p>{{comment.comment}}</p>
-                                </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="font-semibold">{{comment.user.firstName}} {{comment.user.lastName}}</p>
+                                <p>{{comment.comment}}</p>
+                            </div>
                             }
                         </div>
+                        @if (currentUser) {
                         <form [formGroup]="form" class="mt-4 comment-form" (submit)="postComment()">
                             <div class="flex items-center">
-                                <textarea class="flex-grow bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2 mb-2 mr-2" rows="2" placeholder="Enter your comment" formControlName="comment"></textarea>
-                                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"><i class="fas fa-paper-plane"></i></button>
+                                <textarea
+                                    class="flex-grow bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2 mb-2 mr-2"
+                                    rows="2" placeholder="Enter your comment" formControlName="comment"></textarea>
+                                <button type="submit"
+                                    class="px-4 py-2 border border-gray-800 text-gray-800 rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:bg-blue-500 focus:text-white"><i
+                                        class="fas fa-paper-plane"></i></button>
                             </div>
                         </form>
+                        } @else {
+                        <h3><a class="text-blue-600" [routerLink]="['/login']">Најави се</a> за да додадеш коментар!
+                        </h3>
+                        }
+
                     </div>
                 </div>
             </div>
