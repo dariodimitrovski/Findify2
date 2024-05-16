@@ -2,6 +2,7 @@ package com.sorsix.finalproject.backend.config
 
 import com.sorsix.finalproject.backend.authentication.authProvider.CustomAuthenticationProvider
 import com.sorsix.finalproject.backend.authentication.filter.JwtAuthenticationFilter
+import com.sorsix.finalproject.backend.domain.Role
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -62,17 +63,38 @@ class SecurityConfig(private val customAuthenticationProvider: CustomAuthenticat
 //        http.addFilterAt(jwtAuthenticationFilter(), BasicAuthenticationFilter::class.java)
 //        return http.build()
 //    }
+//    @Bean
+//    fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
+//        http.csrf { it.disable() }
+//            .authorizeHttpRequests {
+//                it
+//                    .requestMatchers("/api/**", "/api/**/**")
+//                    .permitAll()
+//                    .requestMatchers("/api/**/**/**")
+//                    .authenticated()
+//            }
+//            .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
+//            .authenticationProvider(customAuthenticationProvider)
+//            .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter::class.java)
+//
+//        return http.build()
+//    }
+
+
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http.csrf { it.disable() }
             .authorizeHttpRequests {
                 it
-                    .requestMatchers("/api/**", "/api/**/**")
-                    .permitAll()
-                    .requestMatchers("/api/**/**/**")
-                    .authenticated()
-//                    .requestMatchers("/api/new-post")
-//                    .authenticated()
+                    // Permit access to specific endpoints without authentication
+                    .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/users/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/categories").permitAll()
+                    .requestMatchers(HttpMethod.GET,"/api/municipalities").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/comments").permitAll()
+                    // Require authentication for other endpoints
+                    .anyRequest().authenticated()
             }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authenticationProvider(customAuthenticationProvider)
@@ -80,5 +102,6 @@ class SecurityConfig(private val customAuthenticationProvider: CustomAuthenticat
 
         return http.build()
     }
+
 
 }
