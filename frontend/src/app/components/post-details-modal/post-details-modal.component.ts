@@ -107,7 +107,7 @@ export class PostDetailsModalComponent implements OnInit {
 
   initMap() {
     this.map = new Map({
-      target: 'item_map',
+      target: 'map',
       layers: [
         new TileLayer({
           source: new OSM()
