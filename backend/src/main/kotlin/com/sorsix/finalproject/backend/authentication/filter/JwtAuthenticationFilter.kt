@@ -40,7 +40,7 @@ class JwtAuthenticationFilter(private val authenticationManager: AuthenticationM
                 request.servletPath.equals("/api/posts/lost-items") ||
                 request.servletPath.equals("/api/posts/found-items") ||
                 request.servletPath.equals("/api/categories") ||
-                request.servletPath.startsWith("/api/posts/") ||
+//                request.servletPath.startsWith("/api/posts/") ||
                 request.servletPath.startsWith("/api") && request.servletPath.endsWith("/image")
     }
 

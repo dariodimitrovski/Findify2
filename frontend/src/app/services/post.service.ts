@@ -24,6 +24,8 @@ export class PostService {
 
   addPost(formData: FormData): Observable<Post> {
     console.log("Posted.")
+    formData.forEach(it => console.log(it))
+    
     return this.http.post<Post>(`${this.url}/add/new-post`, formData)
   }
 

@@ -84,6 +84,9 @@ export class AddPostComponent implements OnInit {
     formData.append("lng", this.postService.getCoordinates()[0].toString())
     formData.append("lat", this.postService.getCoordinates()[1].toString())
 
+    formData.forEach(it => console.log(it))
+
+
     this.service.addPost(formData).subscribe({
       next: () => {
         this.router.navigateByUrl('/home')

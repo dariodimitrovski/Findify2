@@ -25,21 +25,6 @@ class PostController(
     private val locationService: LocationService
 ) {
 
-//    @GetMapping("/lost-items")
-//    fun getLostItems(): ResponseEntity<List<Post>> {
-//        return ResponseEntity.ok(postService.findByStatus(PostStatus.ACTIVE_LOST))
-//    }
-//
-//    @GetMapping("/found-items")
-//    fun getFoundItems(): ResponseEntity<List<Post>> {
-//        return ResponseEntity.ok(postService.findByStatus(PostStatus.ACTIVE_FOUND))
-//    }
-//
-//    @GetMapping("/pending-posts")
-//    fun getPendingItems(): ResponseEntity<List<Post>> {
-//        return ResponseEntity.ok(postService.findByStatus(PostStatus.PENDING_LOST) + postService.findByStatus(PostStatus.PENDING_FOUND))
-//    }
-
     @GetMapping("/lost-items")
     fun getLostItems(
         @RequestParam(required = false) page: Int?,
