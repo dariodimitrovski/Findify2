@@ -1,67 +1,45 @@
-<div class="container-fluid" id="cardModal">
-  <div class="row justify-content-center align-items-center" style="min-height: 80vh;">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-12">
-            <h4>Измени го профилот</h4>
-            <hr>
+<div class="dark:bg-gray-900 container mx-auto">
+  <div class="max-w-2xl px-4 py-8 mx-auto lg:py-16 bg-white rounded-lg shadow-lg details-container">
+      <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Измени го профилот</h2>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
+            
+              <div class="w-full">
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Име</label>
+                <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Вашето име овде..." formControlName="firstName">
+            </div>
+            <div class="w-full">
+              <label for="surname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Презиме</label>
+              <input type="text" name="surname" id="surname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  placeholder="Вашето презиме овде..." formControlName="lastName">
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <form [formGroup]="form" (ngSubmit)="onSubmit()">
-              <div class="form-group row">
-                <label for="firstName" class="col-4 col-form-label">Име</label>
-                <div class="col-8">
-                  <input id="firstName" name="firstName" placeholder={{currentUser?.firstName}} class="form-control here"
-                    type="text" formControlName="firstName">
-                </div>
+          <div class="sm:col-span-2">
+                  <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Е-пошта</label>
+                  <input type="text" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  placeholder="{{currentUser?.email}}" disabled>
               </div>
-              <div class="form-group row">
-                <label for="lastName" class="col-4 col-form-label">Презиме</label>
-                <div class="col-8">
-                  <input id="lastName" name="lastName" placeholder={{currentUser?.lastName}} class="form-control here"
-                    type="text" formControlName="lastName">
+              <div class="sm:col-span-2">
+                <label for="phoneNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tелефонски број</label>
+                <input type="text" formControlName="phoneNumber" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600"
+                placeholder="Phone Number" appPhone />          
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="email" class="col-4 col-form-label">Емаил</label>
-                <div class="col-8">
-                  <input id="email" name="email" placeholder={{currentUser?.email}} class="form-control here" disabled
-                    type="text">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="phoneNumber" class="col-4 col-form-label">Телефонски број</label>
-                <div class="col-8">
-                  <input id="phoneNumber" name="phoneNumber" placeholder={{currentUser?.phoneNumber}} appPhone
-                    class="form-control here" type="text" formControlName="phoneNumber">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="newpass" class="col-4 col-form-label">Нова лозинка</label>
-                <div class="col-8">
-                  <input id="newpass" name="newpass" placeholder="New Password" class="form-control here"
-                    type="password" formControlName="password">
-                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="newpass" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Нова лозинка</label>
+                  <input type="text" name="newpass" id="newpass" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  placeholder="Нова лозинка овде..." type="password" formControlName="password">
               </div>
 
-              <div class="mb-3">
-                <label for="formFileSm" class="form-label">Прикачи фотографија</label>
-                <input class="form-control form-control-sm" placeholder="Choose from gallery" id="formFileSm" type="file" formControlName="image"
+              <div class="sm:col-span-2">
+                <label for="formFileSm" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Прикачи фотографија</label>
+                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Избери од галерија..." id="formFileSm" type="file" formControlName="image"
                     (change)="onFileSelected($event)">
             </div>
-
-              <div class="form-group row">
-                <div class="offset-4 col-8">
-                  <button name="submit" type="submit" class="btn btn-primary">Зачувај</button>
-                </div>
-              </div>
-            </form>
+              
           </div>
-        </div>
-      </div>
-    </div>
+          <div class="flex items-center space-x-4">
+              <button type="submit" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" id="btnup">
+                  Зачувај ги промените
+              </button>
+              
+          </div>
+      </form>
   </div>
 </div>

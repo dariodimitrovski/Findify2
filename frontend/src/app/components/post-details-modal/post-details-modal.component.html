@@ -11,20 +11,16 @@
                                 <h2 class="text-xl font-semibold mb-2">{{post?.title}}</h2>
                                 <p class="text-gray-600">{{post?.description}}</p>
                             </div>
-                            <!-- Mark as found button -->
-
                             <button *ngIf="currentUser != null && currentUser?.id === post?.user?.id" type="button"
                                 class="px-4 py-2 border border-gray-800 text-gray-800 rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:bg-blue-500 focus:text-white"
                                 (click)="decline()">Mark as found</button>
-
                         </div>
                         <div class="flex justify-between items-center mt-4">
                             <div>
                                 <p class="text-sm text-gray-500">Категорија: {{post?.category?.categoryName}}</p>
                                 <p class="text-sm text-gray-500">Општина: {{post?.municipality?.name}}</p>
-                                <p class="text-sm text-gray-500">Објавено од: {{post?.user?.firstName}}
-                                    {{post?.user?.lastName}}</p>
-                                    <p class="text-sm text-gray-500">Контакт: {{post?.user?.phoneNumber}}</p>
+                                <p class="text-sm text-gray-500">Објавено од: {{post?.user?.firstName}} {{post?.user?.lastName}}</p>
+                                <p class="text-sm text-gray-500">Контакт: {{post?.user?.phoneNumber}}</p>
                             </div>
                             <div *ngIf="currentUser?.role === 'ROLE_ADMIN'" class="flex space-x-2">
                                 <div *ngIf="!post?.state?.includes('ACTIVE')">
@@ -45,33 +41,31 @@
                 </div>
                 <!-- Column for comments -->
                 <div>
-                    <div class="comments">
-                        <h2 class="text-xl font-semibold mb-4">Коментари</h2>
-                        <div class="comment-container space-y-4 overflow-y-auto" style="max-height: 350px;">
-                            <!-- Loop through comments -->
-                            @for (comment of comments; track comment.id) {
-                            <div class="bg-gray-100 p-4 rounded-lg">
-                                <p class="font-semibold">{{comment.user.firstName}} {{comment.user.lastName}}</p>
-                                <p>{{comment.comment}}</p>
+                    <div class="comments-container relative flex flex-col justify-between h-full">
+                        <div>
+                            <h2 class="text-xl font-semibold mb-4">Коментари</h2>
+                            <div class="comment-container space-y-4 overflow-y-auto flex-grow">
+                                <!-- Loop through comments -->
+                                @for (comment of comments; track comment.id) {
+                                <div class="bg-gray-100 p-4 rounded-lg comment-item">
+                                    <p class="font-semibold">{{comment.user.firstName}} {{comment.user.lastName}}</p>
+                                    <p>{{comment.comment}}</p>
+                                </div>
+                                }
                             </div>
+                        </div>
+                        <div>
+                            @if (currentUser) {
+                            <form [formGroup]="form" class="mt-4 comment-form flex items-center" (submit)="postComment()">
+                                <textarea class="flex-grow bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2 mb-2 mr-2" rows="2" placeholder="Enter your comment" formControlName="comment"></textarea>
+                                <button type="submit" class="px-4 py-2 border border-gray-800 text-gray-800 rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:bg-blue-500 focus:text-white">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </form>
+                            } @else {
+                            <h3><a class="text-blue-600" [routerLink]="['/login']">Најави се</a> за да додадеш коментар!</h3>
                             }
                         </div>
-                        @if (currentUser) {
-                        <form [formGroup]="form" class="mt-4 comment-form" (submit)="postComment()">
-                            <div class="flex items-center">
-                                <textarea
-                                    class="flex-grow bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-2 mb-2 mr-2"
-                                    rows="2" placeholder="Enter your comment" formControlName="comment"></textarea>
-                                <button type="submit"
-                                    class="px-4 py-2 border border-gray-800 text-gray-800 rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:bg-blue-500 focus:text-white"><i
-                                        class="fas fa-paper-plane"></i></button>
-                            </div>
-                        </form>
-                        } @else {
-                        <h3><a class="text-blue-600" [routerLink]="['/login']">Најави се</a> за да додадеш коментар!
-                        </h3>
-                        }
-
                     </div>
                 </div>
             </div>

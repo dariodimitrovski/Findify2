@@ -1,11 +1,27 @@
 
 
-.comment-form {
-    position: relative;
-    //top: 100px;
-    bottom: -440px;
-}
+// .comment-form {
+//     position: relative;
+//     //top: 100px;
+//     bottom: -440px;
+// }
 
 #map {
     height: 400px;
+}
+.comments-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.comment-container {
+    overflow-y: auto;
+    max-height: 350px;
+}
+
+.comment-form {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
 }
