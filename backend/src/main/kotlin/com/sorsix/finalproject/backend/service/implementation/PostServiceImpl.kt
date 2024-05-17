@@ -111,8 +111,16 @@ class PostServiceImpl(private val postRepository: PostRepository, private val us
         val posts = mutableListOf<Post>()
 
         if (category == null && municipality == null && title.isEmpty()) {
-            return postRepository.findAllByState(status)
-                .sortedByDescending { it.date }
+
+            return if(order == "Најнови прво"){
+                postRepository.findAllByState(status)
+                    .sortedByDescending { it.date }
+            }else{
+                postRepository.findAllByState(status)
+                    .sortedByDescending { it.date }.reversed()
+            }
+//            return postRepository.findAllByState(status)
+//                .sortedByDescending { it.date }
         }
 
         posts.addAll(buildQuery(title, category, municipality, status))
