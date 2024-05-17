@@ -1,34 +1,3 @@
-<!-- <div class="container-fluid" id="cardModal">
-    <div class="row">
-        <div class="col-md-6">
-            <ul class="list-group">
-                @for (user of users.slice(0, users.length / 2); track user.id) {
-                <li class="list-group-item user-item">
-                    <div class="user-details">
-                        <h5 class="user-name">{{ user.firstName }} {{ user.lastName }}</h5>
-                        <p class="user-email">{{ user.email }}</p>
-                    </div>
-                    <button class="btn btn-danger delete-btn" (click)="deleteAccount(user.id)">Delete Account</button>
-                </li>
-                }
-            </ul>
-        </div>
-        <div class="col-md-6">
-            <ul class="list-group">
-                @for (user of users.slice(users.length / 2); track user.id) {
-                <li class="list-group-item user-item">
-                    <div class="user-details">
-                        <h5 class="user-name">{{ user.firstName }} {{ user.lastName }}</h5>
-                        <p class="user-email">{{ user.email }}</p>
-                    </div>
-                    <button class="btn btn-danger delete-btn" (click)="deleteAccount(user.id)">Delete Account</button>
-                </li>
-                }
-            </ul>
-        </div>
-    </div>
-</div> -->
-
 <div class="mx-auto max-w-screen-lg px-4 py-8 sm:px-8">
     <div class="flex items-center justify-between pb-6 details-container">
         <div>
@@ -41,46 +10,40 @@
             <table class="w-full">
                 <thead>
                     <tr class="bg-gray-800 text-left text-xs font-semibold uppercase tracking-widest text-white">
-                        <th class="px-5 py-3">ID</th>
-                        <th class="px-5 py-3">Full Name</th>
-                        <th class="px-5 py-3">User Role</th>
-                        <th class="px-5 py-3">Created at</th>
-                        <th class="px-5 py-3">Status</th>
+                        <th class="px-5 py-3 text-center">ID</th>
+                        <th class="px-5 py-3 text-center">Full Name</th>
+                        <th class="px-5 py-3 text-center">User Role</th>
+                        <th class="px-5 py-3 text-center">Manage</th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-500">
                     @for (user of users; track user.id) {
                     <tr>
-                        <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                        <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm text-center">
                             <p class="whitespace-no-wrap">{{user.id}}</p>
                         </td>
                         <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
                             <div class="flex items-center">
                                 <div class="h-10 w-10 flex-shrink-0">
-                                    <img class="h-full w-full rounded-full" src="/images/-ytzjgg6lxK1ICPcNfXho.png"
-                                        alt="" />
+                                    <img class="h-full w-full rounded-full" src="/images/-ytzjgg6lxK1ICPcNfXho.png" alt="" />
                                 </div>
                                 <div class="ml-3">
                                     <p class="whitespace-no-wrap">{{user.firstName}} {{user.lastName}}</p>
                                 </div>
                             </div>
                         </td>
-                        <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                        <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm text-center">
                             <p class="whitespace-no-wrap">{{user.role.replace("ROLE_", "")}}</p>
                         </td>
-                        <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                            <p class="whitespace-no-wrap">Sep 28, 2022</p>
-                        </td>
-
-                        <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                            <span
-                                class="rounded-full bg-green-200 px-3 py-1 text-xs font-semibold text-green-900">Active</span>
+                        <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm text-center">
+                            <button type="button" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600" (click)="deleteAccount(user.id)">
+                                <i class="fas fa-times"></i> Delete
+                            </button>
                         </td>
                     </tr>
-                }
+                    }
                 </tbody>
             </table>
         </div>
-
     </div>
 </div>

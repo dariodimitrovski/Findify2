@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MunicipalityService } from '../../services/municipality.service';
 import { Municipality } from '../../models/Municipality';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { Router, RouterLink } from '@angular/router';
@@ -13,7 +13,7 @@ import { MapComponent } from '../map/map.component';
 @Component({
   selector: 'app-add-post',
   standalone: true,
-  imports: [NgFor, ReactiveFormsModule, HomeComponent, RouterLink, MapComponent],
+  imports: [CommonModule, ReactiveFormsModule, HomeComponent, RouterLink, MapComponent],
   templateUrl: './add-post.component.html',
   styleUrl: './add-post.component.scss'
 })
@@ -21,6 +21,7 @@ export class AddPostComponent implements OnInit {
 
   errorMessage: string = ''
   form!: FormGroup
+  complete: boolean = true;
 
   constructor(private municipalityService: MunicipalityService,
     private formBuilder: FormBuilder,
@@ -67,6 +68,7 @@ export class AddPostComponent implements OnInit {
     if(this.form.invalid){
       console.log(this.form)
       console.log("form is invalid")
+      this.complete = false;
       return;
     }
     
@@ -89,11 +91,13 @@ export class AddPostComponent implements OnInit {
 
     this.service.addPost(formData).subscribe({
       next: () => {
+        this.complete = true
         this.router.navigateByUrl('/home')
       },
       error: error => {
         this.errorMessage = error.error
         console.log("Error", error)
+        this.complete = false;
       }
     })
   }

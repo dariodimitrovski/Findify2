@@ -37,6 +37,8 @@ export class FoundItemsComponent {
 
   form!: FormGroup;
   filter = false;
+  sortOpened: boolean = false;
+  sortingMethod: string = 'Најстари прво';
 
   query$: Subject<string> = new Subject()
   q: string = ''
@@ -56,7 +58,8 @@ export class FoundItemsComponent {
     this.form = this.formBuilder.group({
       title: '',
       category: '',
-      municipality: ''
+      municipality: '',
+      order: ''
     });
 
     this.query$
@@ -72,8 +75,24 @@ export class FoundItemsComponent {
 
     this.getFoundItems(this.currentPage, this.pageSize);
   }
+
+  toggleSort() {
+    this.sortOpened = !this.sortOpened;
+  }
+
   search(query: string) {
     this.query$.next(query)
+  }
+
+  setCategory(category: string = '') {
+    this.form.get('category')!!.setValue(category);
+    this.onSubmitFilter();
+  }
+
+  setSortingMethod(method: string) {
+    this.form.get('order')!!.setValue(method);
+    this.sortingMethod = method;
+    this.onSubmitFilter();
   }
 
   onSubmitFilter(): void {
@@ -89,6 +108,7 @@ export class FoundItemsComponent {
     formData.append("category", this.form.get('category')?.value || '');
     formData.append("municipality", this.form.get('municipality')?.value || '');
     formData.append("state", "ACTIVE_FOUND")
+    formData.append("order", this.form.get('order')?.value || 'Најнови прво');
 
 
     this.filterService.filterPosts(formData).subscribe({
