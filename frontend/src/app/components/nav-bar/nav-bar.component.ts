@@ -29,7 +29,7 @@ export class NavBarComponent implements OnInit {
      this.currentUser = JSON.parse(localStorage.getItem('user')!!) //TODO: Check do we need this
    }
 
-  ngOnInit() {
+   ngOnInit() {
     this.loggedIn = this.authService.isLoggedIn();
 
     this.authService.getLoginStatus().subscribe((isLoggedIn) => {
@@ -37,14 +37,14 @@ export class NavBarComponent implements OnInit {
     });
 
     this.authService.getCurrentUser().subscribe((user) => {
-      if(user != undefined){
-        this.currentUser = user;
-        this.userService.getUserImage(user.id!!).subscribe((imageDate) => {
-          const imageUrl = URL.createObjectURL(new Blob([imageDate]));
-          this.userImage = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
-       }) //TODO: preraboti go so mergeMap
-      }
+      this.currentUser = user;
     })
+
+    this.userService.getUserImage(this.currentUser?.id!!).subscribe((imageDate) => {
+      const imageUrl = URL.createObjectURL(new Blob([imageDate]));
+      this.userImage = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+   })
+
   }
 
   toggleDropdown() {
