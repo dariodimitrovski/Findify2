@@ -3,14 +3,14 @@ import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/User';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserDTO } from '../../models/UserDTO';
 import { PhoneDirective } from '../../directives/phone.directive';
 
 @Component({
   selector: 'app-update-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, PhoneDirective],
+  imports: [ReactiveFormsModule, PhoneDirective, RouterLink],
   templateUrl: './update-profile.component.html',
   styleUrl: './update-profile.component.scss'
 })
