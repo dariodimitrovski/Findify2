@@ -14,15 +14,16 @@ import { Municipality } from '../../models/Municipality';
 import { NgFor, NgIf } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
-    selector: 'app-found-items',
-    standalone: true,
-    templateUrl: './found-items.component.html',
-    styleUrl: './found-items.component.scss',
-    imports: [NavBarComponent, PostDetailsModalComponent, RouterLink, FilterSectionComponent, NgFor, ReactiveFormsModule, NgIf]
+  selector: 'app-found-items',
+  standalone: true,
+  templateUrl: './found-items.component.html',
+  styleUrl: './found-items.component.scss',
+  imports: [NavBarComponent, PostDetailsModalComponent, RouterLink, FilterSectionComponent, NgFor, ReactiveFormsModule, NgIf, MatPaginatorModule]
 })
-export class FoundItemsComponent{
+export class FoundItemsComponent {
   constructor(
     private postService: PostService,
     private municipalityService: MunicipalityService,
@@ -33,12 +34,20 @@ export class FoundItemsComponent{
   ) { }
   posts: Post[] = []
   filtered: Post[] = [];
-  
+
   form!: FormGroup;
   filter = false;
 
   query$: Subject<string> = new Subject()
   q: string = ''
+  totalItems = this.getItemSize; //tuka od backend da se zema broj na total items
+  pageSize = 10;
+  currentPage = 0;
+
+  pageChanged(event: PageEvent) {
+    this.currentPage = event.pageIndex;
+    this.getFoundItems(this.currentPage, this.pageSize);
+  }
 
   ngOnInit(): void {
     this.getMunicipalities();
@@ -52,15 +61,16 @@ export class FoundItemsComponent{
 
     this.query$
       .pipe(
-        debounceTime(400),
+        debounceTime(800),
         distinctUntilChanged(),
       )
       .subscribe(it => {
         this.q = it;
         this.onSubmitFilter()
       })
+    this.getItemSize();
 
-    this.getFoundItems();
+    this.getFoundItems(this.currentPage, this.pageSize);
   }
   search(query: string) {
     this.query$.next(query)
@@ -72,7 +82,7 @@ export class FoundItemsComponent{
       console.log("Form is invalid");
       return;
     }
-  
+
     const formData = new FormData();
     // formData.append("title", this.form.get('title')?.value || '');
     formData.append("title", this.q);
@@ -80,12 +90,12 @@ export class FoundItemsComponent{
     formData.append("municipality", this.form.get('municipality')?.value || '');
     formData.append("state", "ACTIVE_FOUND")
 
-  
+
     this.filterService.filterPosts(formData).subscribe({
       next: (data) => {
         this.filtered = data;
         data.forEach((element) => {
-          this.postService.getPostImage(element.id).subscribe((ImageData)=> {
+          this.postService.getPostImage(element.id).subscribe((ImageData) => {
             const imageUrl = URL.createObjectURL(new Blob([ImageData]));
             element.image = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
           });
@@ -96,7 +106,7 @@ export class FoundItemsComponent{
       }
     });
   }
-  
+
   municipalities: Municipality[] = []
 
   getMunicipalities() {
@@ -112,8 +122,8 @@ export class FoundItemsComponent{
       this.categories = it;
     })
   }
-  getFoundItems(): void {
-    this.postService.getFoundItems().subscribe({
+  getFoundItems(page: number, size: number): void {
+    this.postService.getFoundItems(page, size).subscribe({
       next: (data) => {
         this.posts = data;
         data.forEach((element) => {
@@ -129,8 +139,21 @@ export class FoundItemsComponent{
     });
   }
 
+  getItemSize() {
+    this.postService.getFoundItemsSize().subscribe({
+      next: (size) => {
+        this.totalItems = size;
+        console.log(size)
+      },
+      error: (error) => {
+        console.error('Error fetching lost items size:', error);
+      }
+    }
+    );
+  }
+
   reloadPage() {
     window.location.reload();
   }
-  }
+}
 

@@ -89,10 +89,11 @@ class SecurityConfig(private val customAuthenticationProvider: CustomAuthenticat
                     // Permit access to specific endpoints without authentication
                     .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
+                   .requestMatchers(HttpMethod.POST, "/api/posts/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/users/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/categories").permitAll()
                     .requestMatchers(HttpMethod.GET,"/api/municipalities").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/api/comments").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/comments/**").permitAll()
                     // Require authentication for other endpoints
                     .anyRequest().authenticated()
             }

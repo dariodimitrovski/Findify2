@@ -36,11 +36,15 @@ class JwtAuthenticationFilter(private val authenticationManager: AuthenticationM
                 request.servletPath.equals("/api/municipalities") ||
                 request.servletPath.equals("/api/users") ||
 //                request.servletPath.equals("/api/user/get") ||
-                request.servletPath.equals("/api/posts") ||
+              // request.servletPath.startsWith("/api/posts/**") ||
+              // request.servletPath.equals("/api/posts/")||
                 request.servletPath.equals("/api/posts/lost-items") ||
                 request.servletPath.equals("/api/posts/found-items") ||
+                request.servletPath.equals("/api/posts/lost-items-size") ||
+                request.servletPath.equals("/api/posts/found-items-size") ||
                 request.servletPath.equals("/api/categories") ||
-//                request.servletPath.startsWith("/api/posts/") ||
+                request.servletPath.startsWith("/api/comments/**") ||
+                request.servletPath.startsWith("/api/posts/**") ||
                 request.servletPath.startsWith("/api") && request.servletPath.endsWith("/image")
     }
 
