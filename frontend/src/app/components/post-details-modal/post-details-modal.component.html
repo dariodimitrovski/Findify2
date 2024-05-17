@@ -13,7 +13,7 @@
                             </div>
                             <!-- Mark as found button -->
 
-                            <button *ngIf="currentUser.id === post?.user?.id" type="button"
+                            <button *ngIf="currentUser != null && currentUser?.id === post?.user?.id" type="button"
                                 class="px-4 py-2 border border-gray-800 text-gray-800 rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:bg-blue-500 focus:text-white"
                                 (click)="decline()">Mark as found</button>
 

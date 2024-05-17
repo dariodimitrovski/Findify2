@@ -25,7 +25,7 @@ export class NavBarComponent implements OnInit {
   userImage: any
 
   constructor(private authService: AuthService, private router: Router, private userService: UserService, private sanitizer: DomSanitizer) {
-     this.currentUser = JSON.parse(localStorage.getItem('user')!!)
+     this.currentUser = JSON.parse(localStorage.getItem('user')!!) //TODO: Check do we need this
    }
 
   ngOnInit() {
@@ -36,14 +36,14 @@ export class NavBarComponent implements OnInit {
     });
 
     this.authService.getCurrentUser().subscribe((user) => {
-      this.currentUser = user;
+      if(user != undefined){
+        this.currentUser = user;
+        this.userService.getUserImage(user.id!!).subscribe((imageDate) => {
+          const imageUrl = URL.createObjectURL(new Blob([imageDate]));
+          this.userImage = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+       }) //TODO: preraboti go so mergeMap
+      }
     })
-
-    this.userService.getUserImage(this.currentUser?.id!!).subscribe((imageDate) => {
-      const imageUrl = URL.createObjectURL(new Blob([imageDate]));
-      this.userImage = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
-   })
-
   }
 
   logOut() {

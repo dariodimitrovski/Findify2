@@ -45,8 +45,8 @@ export class PostService {
     return this.http.get<any>(`${this.url}/found-items-size`)
   }
 
-  getPendingPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.url}/pending-items`)
+  getPendingPosts(page: number = 0, size: number = 10): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.url}/pending-items?page=${page}&size=${size}`)
   }
 
   getPendingItemsSize(): Observable<any>{
