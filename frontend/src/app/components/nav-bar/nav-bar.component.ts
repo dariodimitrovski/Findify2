@@ -23,6 +23,7 @@ export class NavBarComponent implements OnInit {
   loggedIn: boolean = false;
   currentUser: User | undefined
   userImage: any
+  dropdownOpened: boolean = false;
 
   constructor(private authService: AuthService, private router: Router, private userService: UserService, private sanitizer: DomSanitizer) {
      this.currentUser = JSON.parse(localStorage.getItem('user')!!) //TODO: Check do we need this
@@ -44,6 +45,10 @@ export class NavBarComponent implements OnInit {
        }) //TODO: preraboti go so mergeMap
       }
     })
+  }
+
+  toggleDropdown() {
+    this.dropdownOpened = !this.dropdownOpened;
   }
 
   logOut() {
