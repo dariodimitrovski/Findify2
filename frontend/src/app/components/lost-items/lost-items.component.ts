@@ -42,6 +42,8 @@ export class LostItemsComponent {
   form!: FormGroup;
   filter = false;
   imageUrl!: string;
+  sortOpened: boolean = false;
+  sortingMethod: string = 'Најстари прво';
 
   query$: Subject<string> = new Subject()
   q: string = ''
@@ -84,8 +86,23 @@ export class LostItemsComponent {
     
   }
 
+  toggleSort() {
+    this.sortOpened = !this.sortOpened;
+  }
+
   search(query: string) {
     this.query$.next(query)
+  }
+
+  setCategory(category: string = '') {
+    this.form.get('category')!!.setValue(category);
+    this.onSubmitFilter();
+  }
+
+  setSortingMethod(method: string) {
+    this.form.get('order')!!.setValue(method);
+    this.sortingMethod = method;
+    this.onSubmitFilter();
   }
 
 
@@ -101,7 +118,7 @@ export class LostItemsComponent {
     formData.append("category", this.form.get('category')?.value || '');
     formData.append("municipality", this.form.get('municipality')?.value || '');
     formData.append("state", "ACTIVE_LOST");
-    formData.append("order", "Најновите прво");
+    formData.append("order", this.form.get('order')?.value || 'Најнови прво');
   
     this.filterService.filterPosts(formData).subscribe({
       next: (data) => {
