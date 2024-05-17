@@ -24,6 +24,7 @@
                                 <p class="text-sm text-gray-500">Општина: {{post?.municipality?.name}}</p>
                                 <p class="text-sm text-gray-500">Објавено од: {{post?.user?.firstName}}
                                     {{post?.user?.lastName}}</p>
+                                    <p class="text-sm text-gray-500">Контакт: {{post?.user?.phoneNumber}}</p>
                             </div>
                             <div *ngIf="currentUser?.role === 'ROLE_ADMIN'" class="flex space-x-2">
                                 <div *ngIf="!post?.state?.includes('ACTIVE')">
