@@ -39,6 +39,10 @@ class TokenService(
         }
     }
 
+    fun getUserEmailFromToken(token: String): String{
+        return jwtDecoder.decode(token).claims["email"] as String
+    }
+
     fun getUserIdFromToken(token: String): Long {
         return jwtDecoder.decode(token).claims["userId"] as Long
     }
