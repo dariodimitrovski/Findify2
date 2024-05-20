@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   errorMessage = ''
   submitted = false
   form!: FormGroup
+  invalid: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
     private auth: AuthService,
@@ -64,6 +65,8 @@ export class LoginComponent implements OnInit {
       next: (response: any) => {
         console.log("User is logged in")
 
+        this.invalid = false;
+
         const loggedInUser: User | undefined = response.user;
           if (loggedInUser) {
             this.userSerivce.setCurrentUser(loggedInUser);
@@ -81,6 +84,7 @@ export class LoginComponent implements OnInit {
       },
       error: error => {
         this.errorMessage = error.error
+        this.invalid = true;
         console.log("Error", error)
       }
     })

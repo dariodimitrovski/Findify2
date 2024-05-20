@@ -79,12 +79,15 @@ export class AddPostComponent implements OnInit {
     const currentUser: User = JSON.parse(localStorage.getItem('user')!!) as User
 
 
+    const currentUser: User = JSON.parse(localStorage.getItem('user')!!) as User
+
     formData.append("title", this.form.get('title')!!.value)
     formData.append("category", this.form.get('category')!!.value)
     formData.append("description", this.form.get('description')!!.value)
     formData.append("municipality", this.form.get('municipality')!!.value)
     formData.append("image", this.form.get('image')!!.value)
     formData.append("state", state)
+    formData.append("userId", currentUser.id.toString())
     
     formData.append("lng", this.postService.getCoordinates()[0].toString())
     formData.append("lat", this.postService.getCoordinates()[1].toString())

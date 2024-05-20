@@ -3,6 +3,7 @@ package com.sorsix.finalproject.backend.api
 import com.sorsix.finalproject.backend.domain.Location
 import com.sorsix.finalproject.backend.domain.Post
 import com.sorsix.finalproject.backend.domain.PostStatus
+import com.sorsix.finalproject.backend.domain.User
 import com.sorsix.finalproject.backend.service.*
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
@@ -113,6 +114,7 @@ class PostController(
         @RequestParam municipality: String,
         @RequestParam image: MultipartFile,
         @RequestParam state: String,
+        @RequestParam userId: Long,
         @RequestParam(required = false) lng: Double,
         @RequestParam(required = false) lat: Double,
         @RequestParam(required = true) userId: Long
@@ -130,9 +132,9 @@ class PostController(
             municipality = mun!!,
             image = image,
             status = s,
+            user = userService.findById(userId)!!,
             location = loc,
             time = LocalDateTime.now().toString(),
-            user = userService.findById(userId)!!
         )
         return ResponseEntity.ok().body(post)
     }

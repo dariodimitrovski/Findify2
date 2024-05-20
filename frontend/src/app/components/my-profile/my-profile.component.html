@@ -13,37 +13,47 @@
             <div class="col-span-1 md:col-span-2">
                 <div class="grid grid-cols-1 gap-4">
                     <div class="mb-2">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Име</label>
-                        <input type="text" id="name" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{currentUser?.firstName}}" disabled>
+                        <label for="name"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Име</label>
+                        <input type="text" id="name" aria-label="disabled input"
+                            class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            value="{{currentUser?.firstName}}" disabled>
                     </div>
                     <div class="mb-2">
                         <label for="surname"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Презиме</label>
-                        <input type="text" id="surname" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{currentUser?.lastName}}" disabled>
+                        <input type="text" id="surname" aria-label="disabled input"
+                            class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            value="{{currentUser?.lastName}}" disabled>
                     </div>
                     <div class="mb-2">
                         <label for="number"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Телефонски број</label>
-                        <input type="text" id="number" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{currentUser?.phoneNumber}}" disabled>
+                        <input type="text" id="number" aria-label="disabled input"
+                            class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            value="{{currentUser?.phoneNumber}}" disabled>
                     </div>
                     <div class="mb-2">
                         <label for="email"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Е-пошта</label>
-                        <input type="text" id="email" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{currentUser?.email}}" disabled>
+                        <input type="text" id="email" aria-label="disabled input"
+                            class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            value="{{currentUser?.email}}" disabled>
                     </div>
                 </div>
-                
+
             </div>
             <!-- Additional Elements Column -->
             <div class="col-span-1 md:col-span-1 flex justify-center items-center">
                 <div class="grid grid-cols-1 gap-4">
                     <div class="text-center">
                         <button type="submit" [routerLink]="['/update-profile', currentUser?.id]"
-                            class="btn bg-blue-600 text-white px-4 py-2 rounded hover:bg-gray-800">Измени го профилот</button>
+                            class="btn bg-blue-600 text-white px-4 py-2 rounded hover:bg-gray-800">Измени го
+                            профилот</button>
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>

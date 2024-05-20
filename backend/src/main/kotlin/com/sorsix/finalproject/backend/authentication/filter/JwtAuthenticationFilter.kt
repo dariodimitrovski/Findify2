@@ -9,13 +9,16 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.oauth2.server.resource.authentication.BearerTokenAuthenticationToken
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 
 @Component
+class JwtAuthenticationFilter(
+    private val authenticationManager: AuthenticationManager
+) : OncePerRequestFilter() {
 class JwtAuthenticationFilter(private val authenticationManager: AuthenticationManager, private val tokenService: TokenService, private val userDetailsService: UserDetailsService) : OncePerRequestFilter() {
-
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,

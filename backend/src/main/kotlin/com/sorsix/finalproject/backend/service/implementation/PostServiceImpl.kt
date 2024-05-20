@@ -10,7 +10,6 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
-import java.util.stream.Collectors
 
 @Service
 class PostServiceImpl(private val postRepository: PostRepository, private val userService: UserService) : PostService {
@@ -30,6 +29,7 @@ class PostServiceImpl(private val postRepository: PostRepository, private val us
         municipality: Municipality,
         image: MultipartFile,
         status: PostStatus,
+        user: User,
         location: Location,
         time: String,
         user: User
