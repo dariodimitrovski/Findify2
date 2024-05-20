@@ -31,7 +31,8 @@ class PostServiceImpl(private val postRepository: PostRepository, private val us
         status: PostStatus,
         user: User,
         location: Location,
-        time: String
+        time: String,
+        user: User
     ): Post {
 //        val email = SecurityContextHolder.getContext().authentication.name
 //        val user = userService.findByEmail(email)

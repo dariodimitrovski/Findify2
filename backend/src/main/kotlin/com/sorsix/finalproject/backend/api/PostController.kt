@@ -116,7 +116,8 @@ class PostController(
         @RequestParam state: String,
         @RequestParam userId: Long,
         @RequestParam(required = false) lng: Double,
-        @RequestParam(required = false) lat: Double
+        @RequestParam(required = false) lat: Double,
+        @RequestParam(required = true) userId: Long
     ): ResponseEntity<Post> {
         val cat = categoryService.findCategoryByName(category)
         val mun = municipalityService.findMunicipalityByName(municipality)

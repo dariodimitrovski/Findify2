@@ -10,13 +10,13 @@ class UserSecurity(user: User) : UserDetails {
 
     private val email: String = user.email
     private val password: String = user.password
-    private val authorities: MutableCollection<GrantedAuthority> =
-        mutableListOf(SimpleGrantedAuthority(user.role.toString()))
+//    private val authorities: MutableCollection<GrantedAuthority> =
+//        mutableListOf(SimpleGrantedAuthority(user.role.toString()))
 
 
     override fun getAuthorities(): Collection<GrantedAuthority> {
-//        return AuthorityUtils.createAuthorityList("USER")
-        return authorities
+        return AuthorityUtils.createAuthorityList("USER")
+       // return authorities
     }
 
     override fun getUsername(): String {

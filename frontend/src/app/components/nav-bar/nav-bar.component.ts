@@ -40,10 +40,10 @@ export class NavBarComponent implements OnInit {
       this.currentUser = user;
     })
 
-    this.userService.getUserImage(this.currentUser?.id!!).subscribe((imageDate) => {
-      const imageUrl = URL.createObjectURL(new Blob([imageDate]));
-      this.userImage = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
-   })
+    // this.userService.getUserImage( ?.id!!).subscribe((imageDate) => {
+      // const imageUrl = URL.createObjectURL(new Blob([imageDate]));
+      // this.userImage = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+  //  })
 
   }
 
