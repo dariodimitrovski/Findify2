@@ -1,7 +1,10 @@
 package com.sorsix.finalproject.backend.authentication
 
+import com.sorsix.finalproject.backend.domain.Role
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 
 data class CustomPrincipal(
@@ -9,12 +12,16 @@ data class CustomPrincipal(
     val userId: Long
 ) : Authentication {
 
+    private val authorities: MutableCollection<GrantedAuthority> =
+        mutableListOf(SimpleGrantedAuthority(Role.values().toString()))
+
+
     override fun getName(): String {
         return userDetails.username
     }
 
     override fun getAuthorities(): Collection<GrantedAuthority> {
-        return emptyList()
+        return authorities
     }
 
     override fun getCredentials(): Any {
