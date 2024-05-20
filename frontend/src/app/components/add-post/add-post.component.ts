@@ -9,6 +9,7 @@ import { HomeComponent } from '../home/home.component';
 import { Category } from '../../models/Category';
 import { CategoryService } from '../../services/category.service';
 import { MapComponent } from '../map/map.component';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'app-add-post',
@@ -76,12 +77,15 @@ export class AddPostComponent implements OnInit {
 
     let formData = new FormData();
 
+    const currentUser: User = JSON.parse(localStorage.getItem('user')!!) as User
+
     formData.append("title", this.form.get('title')!!.value)
     formData.append("category", this.form.get('category')!!.value)
     formData.append("description", this.form.get('description')!!.value)
     formData.append("municipality", this.form.get('municipality')!!.value)
     formData.append("image", this.form.get('image')!!.value)
     formData.append("state", state)
+    formData.append("userId", currentUser.id.toString())
     
     formData.append("lng", this.postService.getCoordinates()[0].toString())
     formData.append("lat", this.postService.getCoordinates()[1].toString())

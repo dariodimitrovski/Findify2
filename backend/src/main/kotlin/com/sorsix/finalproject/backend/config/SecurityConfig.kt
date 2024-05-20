@@ -2,20 +2,16 @@ package com.sorsix.finalproject.backend.config
 
 import com.sorsix.finalproject.backend.authentication.authProvider.CustomAuthenticationProvider
 import com.sorsix.finalproject.backend.authentication.filter.JwtAuthenticationFilter
-import com.sorsix.finalproject.backend.domain.Role
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.ProviderManager
-import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
 
 
 @Configuration
@@ -89,11 +85,12 @@ class SecurityConfig(private val customAuthenticationProvider: CustomAuthenticat
                     // Permit access to specific endpoints without authentication
                     .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
-                   .requestMatchers(HttpMethod.POST, "/api/posts/**").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/api/posts/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/users/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/categories").permitAll()
                     .requestMatchers(HttpMethod.GET,"/api/municipalities").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/comments/**").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/api/posts/add/new-post").permitAll()
                     // Require authentication for other endpoints
                     .anyRequest().authenticated()
             }

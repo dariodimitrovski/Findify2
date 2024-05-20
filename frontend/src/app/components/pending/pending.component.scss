@@ -74,11 +74,11 @@ h1 {
 }
 
 .input-field {
-    padding-top: 20px; /* Adjust as needed */
+    padding-top: 20px;
 }
 
 .custom-input {
-    width: 180px; /* Set a specific width */
+    width: 180px;
     
 }
 body {
@@ -96,7 +96,7 @@ body {
     margin-left: -20px;
 }
 .custom-card {
-    margin-bottom: 10px; /* Adjust the margin value as needed */
+    margin-bottom: 10px;
 }
 
 .post-container{
@@ -119,4 +119,7 @@ body {
 .row {
     margin-left: 0;
     height: 250px;
+}
+.custom-container {
+    margin-left: 350px;
 }

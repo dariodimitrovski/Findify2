@@ -3,10 +3,8 @@ package com.sorsix.finalproject.backend.api
 import com.sorsix.finalproject.backend.domain.Location
 import com.sorsix.finalproject.backend.domain.Post
 import com.sorsix.finalproject.backend.domain.PostStatus
-import com.sorsix.finalproject.backend.service.CategoryService
-import com.sorsix.finalproject.backend.service.LocationService
-import com.sorsix.finalproject.backend.service.MunicipalityService
-import com.sorsix.finalproject.backend.service.PostService
+import com.sorsix.finalproject.backend.domain.User
+import com.sorsix.finalproject.backend.service.*
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -22,7 +20,8 @@ class PostController(
     private val postService: PostService,
     private val categoryService: CategoryService,
     private val municipalityService: MunicipalityService,
-    private val locationService: LocationService
+    private val locationService: LocationService,
+    private val userService: UserService
 ) {
 
     @GetMapping("/lost-items")
@@ -115,6 +114,7 @@ class PostController(
         @RequestParam municipality: String,
         @RequestParam image: MultipartFile,
         @RequestParam state: String,
+        @RequestParam userId: Long,
         @RequestParam(required = false) lng: Double,
         @RequestParam(required = false) lat: Double
     ): ResponseEntity<Post> {
@@ -131,8 +131,9 @@ class PostController(
             municipality = mun!!,
             image = image,
             status = s,
+            user = userService.findById(userId)!!,
             location = loc,
-            time = LocalDateTime.now().toString()
+            time = LocalDateTime.now().toString(),
         )
         return ResponseEntity.ok().body(post)
     }

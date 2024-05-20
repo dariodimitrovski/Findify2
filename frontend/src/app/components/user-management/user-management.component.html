@@ -1,8 +1,8 @@
 <div class="mx-auto max-w-screen-lg px-4 py-8 sm:px-8">
     <div class="flex items-center justify-between pb-6 details-container">
         <div>
-            <h2 class="font-semibold text-gray-700">User Accounts</h2>
-            <span class="text-xs text-gray-500">View accounts of registered users</span>
+            <h2 class="font-semibold text-gray-700">Корисници</h2>
+            <span class="text-xs text-gray-500">Преглед на регистрираните корисници</span>
         </div>
     </div>
     <div class="overflow-y-hidden rounded-lg border">
@@ -22,21 +22,17 @@
                         <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm text-center">
                             <p class="whitespace-no-wrap">{{user.id}}</p>
                         </td>
-                        <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                            <div class="flex items-center">
-                                <div class="h-10 w-10 flex-shrink-0">
-                                    <img class="h-full w-full rounded-full" src="/images/-ytzjgg6lxK1ICPcNfXho.png" alt="" />
-                                </div>
+                        <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm text-center">
                                 <div class="ml-3">
                                     <p class="whitespace-no-wrap">{{user.firstName}} {{user.lastName}}</p>
-                                </div>
                             </div>
                         </td>
                         <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm text-center">
                             <p class="whitespace-no-wrap">{{user.role.replace("ROLE_", "")}}</p>
                         </td>
                         <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm text-center">
-                            <button type="button" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600" (click)="deleteAccount(user.id)">
+                            <button type="button" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                                (click)="deleteAccount(user.id)">
                                 <i class="fas fa-times"></i> Delete
                             </button>
                         </td>

@@ -6,11 +6,14 @@ import jakarta.servlet.http.HttpServletResponse
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.oauth2.server.resource.authentication.BearerTokenAuthenticationToken
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 
 @Component
-class JwtAuthenticationFilter(private val authenticationManager: AuthenticationManager) : OncePerRequestFilter() {
+class JwtAuthenticationFilter(
+    private val authenticationManager: AuthenticationManager
+) : OncePerRequestFilter() {
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
@@ -18,13 +21,14 @@ class JwtAuthenticationFilter(private val authenticationManager: AuthenticationM
     ) {
         try {
             val jwt: String = request.getHeader("Authorization").substringAfter("Bearer ")
+            //val jwtToken = jwtDecoder.decode(jwt)
             val authentication = BearerTokenAuthenticationToken(jwt)
             val authResult = authenticationManager.authenticate(authentication)
             SecurityContextHolder.getContext().authentication = authResult
             filterChain.doFilter(request, response)
         } catch (e: Exception) {
-            //response.status = 401
-            println(e.message)
+            response.status = HttpServletResponse.SC_UNAUTHORIZED
+            response.writer.write("Invalid JWT token")
             return
         }
     }
