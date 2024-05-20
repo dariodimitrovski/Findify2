@@ -114,10 +114,8 @@ class PostController(
         @RequestParam municipality: String,
         @RequestParam image: MultipartFile,
         @RequestParam state: String,
-        @RequestParam userId: Long,
         @RequestParam(required = false) lng: Double,
-        @RequestParam(required = false) lat: Double,
-        @RequestParam(required = true) userId: Long
+        @RequestParam(required = false) lat: Double
     ): ResponseEntity<Post> {
         val cat = categoryService.findCategoryByName(category)
         val mun = municipalityService.findMunicipalityByName(municipality)
@@ -132,7 +130,6 @@ class PostController(
             municipality = mun!!,
             image = image,
             status = s,
-            user = userService.findById(userId)!!,
             location = loc,
             time = LocalDateTime.now().toString(),
         )

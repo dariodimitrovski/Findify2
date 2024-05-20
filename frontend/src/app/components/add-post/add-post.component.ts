@@ -76,8 +76,6 @@ export class AddPostComponent implements OnInit {
     console.log(this.form)
 
     let formData = new FormData();
-    const currentUser: User = JSON.parse(localStorage.getItem('user')!!) as User
-
 
     const currentUser: User = JSON.parse(localStorage.getItem('user')!!) as User
 
@@ -87,11 +85,10 @@ export class AddPostComponent implements OnInit {
     formData.append("municipality", this.form.get('municipality')!!.value)
     formData.append("image", this.form.get('image')!!.value)
     formData.append("state", state)
-    formData.append("userId", currentUser.id.toString())
+    // formData.append("userId", currentUser.id.toString())
     
     formData.append("lng", this.postService.getCoordinates()[0].toString())
     formData.append("lat", this.postService.getCoordinates()[1].toString())
-    formData.append("userId", currentUser.id.toString())
 
 
     formData.forEach(it => console.log(it))

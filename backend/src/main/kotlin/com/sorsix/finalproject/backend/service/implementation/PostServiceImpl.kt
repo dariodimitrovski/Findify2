@@ -29,13 +29,11 @@ class PostServiceImpl(private val postRepository: PostRepository, private val us
         municipality: Municipality,
         image: MultipartFile,
         status: PostStatus,
-        user: User,
         location: Location,
-        time: String,
-        user: User
+        time: String
     ): Post {
-//        val email = SecurityContextHolder.getContext().authentication.name
-//        val user = userService.findByEmail(email)
+        val email = SecurityContextHolder.getContext().authentication.name
+        val user = userService.findByEmail(email)
         val byteArr = image.bytes
 
         return this.postRepository.save(
@@ -44,7 +42,7 @@ class PostServiceImpl(private val postRepository: PostRepository, private val us
                 state = status,
                 title = title,
                 image = byteArr,
-                user = user,
+                user = user!!,
                 municipality = municipality,
                 category = category,
                 description = description,

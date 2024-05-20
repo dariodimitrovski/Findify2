@@ -6,17 +6,18 @@ import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-class UserSecurity(user: User) : UserDetails {
+class UserSecurity(
+    val user: User
+) : UserDetails {
 
     private val email: String = user.email
     private val password: String = user.password
-//    private val authorities: MutableCollection<GrantedAuthority> =
-//        mutableListOf(SimpleGrantedAuthority(user.role.toString()))
+    private val authorities: MutableCollection<GrantedAuthority> =
+        mutableListOf(SimpleGrantedAuthority(user.role.toString()))
 
 
     override fun getAuthorities(): Collection<GrantedAuthority> {
-        return AuthorityUtils.createAuthorityList("USER")
-       // return authorities
+        return authorities
     }
 
     override fun getUsername(): String {
