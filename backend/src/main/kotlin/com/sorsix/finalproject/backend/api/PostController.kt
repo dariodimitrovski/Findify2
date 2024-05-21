@@ -32,8 +32,11 @@ class PostController(
 
         val pageNum = page ?: 0
         val sizeNum = size ?: 3
-
-        return ResponseEntity.ok(postService.findByStatus(PostStatus.ACTIVE_LOST, pageNum, sizeNum).content)
+        val posts: List<Post> = postService.findByStatus(PostStatus.ACTIVE_LOST, pageNum, sizeNum).content
+            .map { p ->
+                p.apply { setTime() }
+            }
+        return ResponseEntity.ok(posts)
     }
 
     @GetMapping("/lost-items-size")
@@ -50,7 +53,13 @@ class PostController(
         val pageNum = page ?: 0
         val sizeNum = size ?: 3
 
-        return ResponseEntity.ok(postService.findByStatus(PostStatus.ACTIVE_FOUND, pageNum, sizeNum).content)
+        val posts: List<Post> = postService.findByStatus(PostStatus.ACTIVE_FOUND, pageNum, sizeNum).content
+        .map {
+            p -> p.apply {
+                setTime()
+            }}
+
+        return ResponseEntity.ok(posts)
     }
     @GetMapping("/found-items-size")
     fun getFoundItemsSize(): Long{

@@ -9,11 +9,11 @@
                         <div class="mt-4 flex justify-between items-center">
                             <div>
                                 <h2 class="text-xl font-semibold mb-2">{{post?.title}}</h2>
-                                <p class="text-gray-600">{{post?.description}}</p>
+                                <p class="text-gray-600 mr-5">{{post?.description}}</p>
                             </div>
                             <button *ngIf="currentUser != null && currentUser?.id === post?.user?.id" type="button"
                                 class="px-4 py-2 border border-gray-800 text-gray-800 rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:bg-blue-500 focus:text-white"
-                                (click)="decline()">Mark as found</button>
+                                (click)="decline()">Пронајдено</button>
                         </div>
                         <div class="flex justify-between items-center mt-4">
                             <div>

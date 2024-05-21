@@ -34,7 +34,7 @@ data class Post(
     @JoinColumn(name = "location_id")
     val location: Location = Location(),
     @Column
-    val time: String = "",
+    var time: String = "",
     @Transient
     var date: LocalDateTime = LocalDateTime.now()
 ) {
@@ -52,10 +52,15 @@ data class Post(
     override fun hashCode(): Int {
         return image.contentHashCode()
     }
+    fun setTime() {
+        val currentTime = LocalDateTime.now()
+        val daysDifference = currentTime.minusDays(date.dayOfMonth.toLong())
 
-    fun convert(){
-        date = LocalDateTime.parse(time)
+        if (daysDifference < currentTime) {
+            time = "Објавен денес"
+        } else {
+            "Објавено пред ${date.toLocalDate().dayOfMonth} денови"
+        }
     }
-
 }
 
