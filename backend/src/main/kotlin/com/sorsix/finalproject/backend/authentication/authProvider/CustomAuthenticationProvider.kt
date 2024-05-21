@@ -21,13 +21,9 @@ class CustomAuthenticationProvider(private val tokenService: TokenService, priva
         if(authentication !is BearerTokenAuthenticationToken){
             return null
         }
-
         val jwt: BearerTokenAuthenticationToken = authentication
         val token: String = jwt.token
-//        val userDetails: UserDetails = tokenService.parseToken(token) ?: throw BadCredentialsException("Invalid token")
         val user = userService.findByEmail(tokenService.getUserEmailFromToken(token))!!
-
-//        val userId = tokenService.getUserIdFromToken(token) // Implement this method to extract userId from the token.
 
         return UsernamePasswordAuthenticationToken(
             UserSecurity(user),

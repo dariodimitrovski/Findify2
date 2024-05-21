@@ -25,7 +25,7 @@ data class User(
     @Column(columnDefinition = "BYTEA", name = "image")
     val image: ByteArray = ByteArray(1)
 ) {
-   // constructor() : this(1L, "Test", "Test", "075123123", "test@test.com", "test123123", Role.ROLE_USER) {}
+    // constructor() : this(1L, "Test", "Test", "075123123", "test@test.com", "test123123", Role.ROLE_USER) {}
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

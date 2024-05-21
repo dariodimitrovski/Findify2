@@ -15,7 +15,6 @@ import org.springframework.web.filter.OncePerRequestFilter
 
 @Component
 class JwtAuthenticationFilter(
-//    private val authenticationManager: AuthenticationManager,
     private val tokenService: TokenService,
     private val userDetailsService: UserDetailsService
 ) : OncePerRequestFilter() {
@@ -42,24 +41,21 @@ class JwtAuthenticationFilter(
 
         if (userEmail != null && SecurityContextHolder.getContext().authentication == null) {
             val userDetails = this.userDetailsService.loadUserByUsername(userEmail)
-// if (jwtUtil.validateToken(jwt, userDetails)) {
             val usernamePasswordAuthenticationToken = UsernamePasswordAuthenticationToken(
                 userDetails, null, userDetails.authorities
             )
             usernamePasswordAuthenticationToken.details = WebAuthenticationDetailsSource().buildDetails(request)
             SecurityContextHolder.getContext().authentication = usernamePasswordAuthenticationToken
-// }
         }
         filterChain.doFilter(request, response)
 
     }
 
-
     override fun shouldNotFilter(request: HttpServletRequest): Boolean {
-        return request.servletPath.startsWith("/api/auth/login") ||
+        return request.servletPath.equals("/api/auth/login") ||
                 request.servletPath.startsWith("/api/users/image/undefined") ||
-                request.servletPath.startsWith("/api/municipalities") ||
-                request.servletPath.startsWith("/api/categories")
+                request.servletPath.equals("/api/municipalities") ||
+                request.servletPath.equals("/api/categories")
 
     }
 
