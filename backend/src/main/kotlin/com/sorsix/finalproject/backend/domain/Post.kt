@@ -54,9 +54,9 @@ data class Post(
     }
     fun setTime() {
         val currentTime = LocalDateTime.now()
-        val daysDifference = currentTime.minusDays(date.dayOfMonth.toLong())
+        val daysDifference = currentTime.dayOfMonth.minus(date.dayOfMonth.toLong())
 
-        if (daysDifference < currentTime) {
+        if (daysDifference < 1) {
             time = "Објавен денес"
         } else {
             "Објавено пред ${date.toLocalDate().dayOfMonth} денови"
