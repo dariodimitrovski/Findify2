@@ -4,13 +4,9 @@ import com.sorsix.finalproject.backend.authentication.UserSecurity
 import com.sorsix.finalproject.backend.authentication.service.TokenService
 import com.sorsix.finalproject.backend.service.UserService
 import org.springframework.security.authentication.AuthenticationProvider
-import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.authority.SimpleGrantedAuthority
-import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.oauth2.server.resource.authentication.BearerTokenAuthenticationToken
 import org.springframework.stereotype.Component
 

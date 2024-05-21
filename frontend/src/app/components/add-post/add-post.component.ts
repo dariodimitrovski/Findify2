@@ -85,7 +85,6 @@ export class AddPostComponent implements OnInit {
     formData.append("municipality", this.form.get('municipality')!!.value)
     formData.append("image", this.form.get('image')!!.value)
     formData.append("state", state)
-    // formData.append("userId", currentUser.id.toString())
     
     formData.append("lng", this.postService.getCoordinates()[0].toString())
     formData.append("lat", this.postService.getCoordinates()[1].toString())
