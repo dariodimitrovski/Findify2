@@ -161,7 +161,11 @@ class PostController(
         else
             PostStatus.ACTIVE_FOUND
 
-        val posts: List<Post> = postService.filter(title, cat, mun, s, order)
+        val posts: List<Post> = postService.filter(title, cat, mun, s, order).map {
+            it.apply {
+                setTime()
+            }
+        }
 
         return ResponseEntity.ok().body(posts)
 
