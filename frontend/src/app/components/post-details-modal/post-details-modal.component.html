@@ -2,7 +2,6 @@
     <div class="flex justify-center items-center min-h-screen">
         <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-screen-xl details-container">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Column for post details -->
                 <div>
                     <div class="post-details">
                         <img [src]="post?.image" class="w-full rounded-lg" alt="Lost item">
@@ -39,13 +38,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Column for comments -->
                 <div>
                     <div class="comments-container relative flex flex-col justify-between h-full">
                         <div>
                             <h2 class="text-xl font-semibold mb-4">Коментари</h2>
                             <div class="comment-container space-y-4 overflow-y-auto flex-grow">
-                                <!-- Loop through comments -->
                                 @for (comment of comments; track comment.id) {
                                 <div class="bg-gray-100 p-4 rounded-lg comment-item">
                                     <p class="font-semibold">{{comment.user.firstName}} {{comment.user.lastName}}</p>
@@ -70,7 +67,6 @@
                 </div>
             </div>
             <div id="map" class="mt-6">
-                <!-- Map component goes here -->
             </div>
         </div>
     </div>

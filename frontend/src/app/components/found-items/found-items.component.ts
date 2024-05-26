@@ -42,7 +42,7 @@ export class FoundItemsComponent {
 
   query$: Subject<string> = new Subject()
   q: string = ''
-  totalItems = this.getItemSize; //tuka od backend da se zema broj na total items
+  totalItems = this.getItemSize; 
   pageSize = 10;
   currentPage = 0;
 
@@ -103,7 +103,6 @@ export class FoundItemsComponent {
     }
 
     const formData = new FormData();
-    // formData.append("title", this.form.get('title')?.value || '');
     formData.append("title", this.q);
     formData.append("category", this.form.get('category')?.value || '');
     formData.append("municipality", this.form.get('municipality')?.value || '');

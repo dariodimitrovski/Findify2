@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository
 interface CategoryRepository:  JpaRepository<Category, Long>{
     fun findByCategoryName(name: String): Category?
 
-
 }

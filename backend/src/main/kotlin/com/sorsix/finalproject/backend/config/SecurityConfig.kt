@@ -38,7 +38,6 @@ class SecurityConfig(
         http.csrf { it.disable() }
             .authorizeHttpRequests {
                 it
-                    // Permit access to specific endpoints without authentication
                     .requestMatchers(
                         "/api/auth/**",
                         "/api/posts/**",

@@ -29,6 +29,4 @@ class JwtEncodingConfig(
         val secret = ImmutableSecret<SecurityContext>(secretKey)
         return NimbusJwtEncoder(secret)
     }
-
-
 }

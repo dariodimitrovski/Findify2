@@ -10,8 +10,6 @@ export class FilterService {
 
   url = 'http://localhost:8080/api/posts'
 
-
-
   constructor(private http: HttpClient) { }
 
   filterPosts(formData: FormData): Observable<Post[]> {

@@ -15,21 +15,12 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface PostRepository : PagingAndSortingRepository<Post, Long>, JpaRepository<Post, Long> {
-   // fun findByState(status: PostStatus): List<Post>
-
     @Transactional
     @Modifying
     @Query("UPDATE Post p SET p.state = :state WHERE p.id = :id")
     fun updateStateById(id: Long, state: PostStatus): Int
-    //override fun deleteById(id: Long)
     fun findAllByCategoryAndState(category: Category, state: PostStatus): List<Post>
     fun findAllByMunicipalityAndState(municipality: Municipality, state: PostStatus): List<Post>
-//    fun findAllByTitleContainingIgnoreCaseAndCategoryAndMunicipalityAndState(
-//        title: String,
-//        category: Category,
-//        municipality: Municipality,
-//        state: PostStatus
-//    ): List<Post>
 
     fun findAllByTitleContainingIgnoreCaseAndCategoryAndState(
         title: String,
@@ -52,7 +43,12 @@ interface PostRepository : PagingAndSortingRepository<Post, Long>, JpaRepository
     fun findAllByTitleContainingIgnoreCaseAndState(title: String, status: PostStatus): List<Post>
     fun findAllByState(status: PostStatus): List<Post>
 
-    fun findAllByTitleContainingIgnoreCaseAndCategoryAndMunicipalityAndState(title: String, category: Category, municipality: Municipality, state: PostStatus): List<Post>
+    fun findAllByTitleContainingIgnoreCaseAndCategoryAndMunicipalityAndState(
+        title: String,
+        category: Category,
+        municipality: Municipality,
+        state: PostStatus
+    ): List<Post>
 
     fun findAllByState(status: PostStatus, pageable: Pageable): Page<Post>
 }

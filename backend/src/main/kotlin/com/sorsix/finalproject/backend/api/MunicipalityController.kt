@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/municipalities")
 class MunicipalityController(private val municipalityService: MunicipalityService) {
-
     @GetMapping()
     fun getMunicipalities(): ResponseEntity<List<Municipality>> {
         return ResponseEntity.ok().body(municipalityService.listAll())

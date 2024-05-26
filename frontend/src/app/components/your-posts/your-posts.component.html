@@ -7,9 +7,7 @@
             <section aria-labelledby="products-heading" class="pb-24 pt-6">
                 <h2 id="products-heading" class="sr-only">Products</h2>
                 <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-                    <!-- Product grid -->
                     <div class="lg:col-span-3">
-                        <!-- Your content -->
                         <div
                             class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                             @for (post of posts; track post.id) {
@@ -23,7 +21,6 @@
                                 <h3 class="mb-4 truncate text-sm text-gray-700">{{post.description}}</h3>
                             </a>
                             }
-                            <!-- More products... -->
                         </div>
                         <div
                             class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
@@ -36,8 +33,6 @@
                             <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                                 <div></div>
                                 <div>
-                                    <!-- <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage"
-                                        (page)="pageChanged($event)"></mat-paginator> -->
                                 </div>
                             </div>
                         </div>

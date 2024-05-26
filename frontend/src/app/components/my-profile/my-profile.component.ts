@@ -20,7 +20,6 @@ export class MyProfileComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('user')!!)
   }
 
-
  ngOnInit() {
      this.userService.getUserImage(this.currentUser?.id!!).subscribe((imageDate) => {
       const imageUrl = URL.createObjectURL(new Blob([imageDate]));

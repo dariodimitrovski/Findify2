@@ -40,8 +40,6 @@ export class AuthService {
   isLoggedIn() {
     const jwtToken = localStorage.getItem('jwtToken');
     return !!jwtToken;
-
-    // return moment().isBefore(this.getExpiration())
   }
 
 

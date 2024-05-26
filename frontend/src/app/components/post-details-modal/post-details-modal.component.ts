@@ -20,7 +20,6 @@ import Icon from 'ol/style/Icon';
 import { Point } from 'ol/geom';
 import VectorSource from 'ol/source/Vector';
 import VectorLayer from 'ol/layer/Vector';
-// import { waitForAsync } from '@angular/core/testing';
 import { Coordinate } from 'ol/coordinate';
 
 @Component({
@@ -54,7 +53,6 @@ export class PostDetailsModalComponent implements OnInit {
       this.loadPost()
       this.buildForm()
       this.initMap()
-      // this.addMarker()
       console.log('id', this.postId)
       this.commentService.getCommentsForPost(this.postId!!).subscribe((it) => {
         this.comments = it;
@@ -136,11 +134,6 @@ export class PostDetailsModalComponent implements OnInit {
         scale: 0.05
       })
     });
-  
-    // const markerFeature = new Feature({
-    //   geometry: new Point(olProj.fromLonLat([21.4254, 41.9981]))
-    // });
-  
     const coordinates: Coordinate = [this.post?.location.lat!!, this.post?.location.lng!!]
     
     const lonLatCoordinate = olProj.transform(coordinates, 'EPSG:4326', 'EPSG:3857');

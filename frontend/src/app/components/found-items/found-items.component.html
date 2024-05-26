@@ -55,7 +55,6 @@
       <section aria-labelledby="products-heading" class="pb-24 pt-6">
         <h2 id="products-heading" class="sr-only">Products</h2>
         <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-          <!-- Filters -->
           <form [formGroup]="form" class="hidden lg:block">
             <div class="border-b pb-6 border-gray-200">
               <label for="default-search"
@@ -95,7 +94,6 @@
             </ul>
           </form>
 
-          <!-- Product grid -->
           <div class="lg:col-span-3">
             <div *ngIf="filter && filtered.length === 0"
               class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -125,7 +123,6 @@
               </a>
               }
 
-              <!-- More products... -->
             </div>
             <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
               <div class="flex flex-1 justify-between sm:hidden">

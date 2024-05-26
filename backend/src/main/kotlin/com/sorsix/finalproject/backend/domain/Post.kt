@@ -52,17 +52,17 @@ data class Post(
     override fun hashCode(): Int {
         return image.contentHashCode()
     }
+
     fun setTime() {
         val currentTime = LocalDateTime.now()
         val daysDifference = currentTime.dayOfMonth.minus(LocalDateTime.parse(time).dayOfMonth.toLong())
 
-        if (daysDifference < 1) {
-            time = "Објавено денес"
+        time = if (daysDifference < 1) {
+            "Објавено денес"
         } else if (daysDifference == 1L) {
-            time = "Објавено пред 1 ден"
-        }
-        else {
-            time = "Објавено пред $daysDifference дена"
+            "Објавено пред 1 ден"
+        } else {
+            "Објавено пред $daysDifference дена"
         }
     }
 }

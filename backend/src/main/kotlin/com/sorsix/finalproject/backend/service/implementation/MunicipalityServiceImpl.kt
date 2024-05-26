@@ -11,7 +11,6 @@ class MunicipalityServiceImpl(private val municipalityRepo: MunicipalityReposito
     override fun listAll(): List<Municipality> {
         return municipalityRepo.findAll()
     }
-
     override fun findMunicipalityByName(name: String): Municipality? = this.municipalityRepo.findByName(name)
     override fun findById(id: Long): Municipality? {
         return this.municipalityRepo.findByIdOrNull(id)

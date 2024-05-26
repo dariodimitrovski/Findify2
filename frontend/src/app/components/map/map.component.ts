@@ -85,10 +85,6 @@ export class MapComponent implements OnInit {
       })
     });
   
-    // const markerFeature = new Feature({
-    //   geometry: new Point(olProj.fromLonLat([21.4254, 41.9981]))
-    // });
-  
     const markerFeature = new Feature({
       geometry: new Point(coordinates)
     });

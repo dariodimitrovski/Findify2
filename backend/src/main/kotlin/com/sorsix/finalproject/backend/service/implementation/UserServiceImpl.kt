@@ -48,7 +48,7 @@ class UserServiceImpl(
         if (password != null && password != "") {
             userRepo.updatePassword(user.id, hashService.hashBcrypt(password))
         }
-        if(phoneNumber != null && phoneNumber != ""){
+        if (phoneNumber != null && phoneNumber != "") {
             userRepo.updateNumber(user.id, phoneNumber)
         }
 
@@ -81,10 +81,7 @@ class UserServiceImpl(
         )
 
         this.userRepo.save(tmp)
-
-
         return tmp
-
     }
 
     override fun getUserImage(): ByteArray {
@@ -92,8 +89,6 @@ class UserServiceImpl(
         val user = userRepo.findByEmail(email)
         return user!!.image
     }
-
-    //override fun updateUserData(id: Long, firstName: String, lastName: String, phoneNumber: String, password: String) = userRepo.updateUserData(id, firstName, lastName, phoneNumber, password)
 
     override fun registerUser(
         firstName: String,

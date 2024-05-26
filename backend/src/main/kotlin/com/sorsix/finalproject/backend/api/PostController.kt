@@ -3,7 +3,6 @@ package com.sorsix.finalproject.backend.api
 import com.sorsix.finalproject.backend.domain.Location
 import com.sorsix.finalproject.backend.domain.Post
 import com.sorsix.finalproject.backend.domain.PostStatus
-import com.sorsix.finalproject.backend.domain.User
 import com.sorsix.finalproject.backend.service.*
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 import java.time.LocalDateTime
-
 
 @RestController
 @CrossOrigin

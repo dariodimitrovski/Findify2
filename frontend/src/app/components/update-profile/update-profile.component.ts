@@ -96,9 +96,5 @@ export class UpdateProfileComponent implements OnInit {
     return this.form.controls;
   }
 
-  // reloadPage() {
-  //   window.location.reload();
-  // }
-
 
 }

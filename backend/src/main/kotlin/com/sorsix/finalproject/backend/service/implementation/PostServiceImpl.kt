@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile
 @Service
 class PostServiceImpl(private val postRepository: PostRepository, private val userService: UserService) : PostService {
     override fun listAll(): List<Post> = postRepository.findAll()
-    //override fun findByStatus(status: PostStatus): List<Post> = postRepository.findByState(status)
     override fun findById(id: Long): Post? = postRepository.findByIdOrNull(id)
     override fun deleteById(id: Long) = postRepository.deleteById(id)
     override fun updateState(id: Long, newState: PostStatus): Post? {
@@ -99,7 +98,6 @@ class PostServiceImpl(private val postRepository: PostRepository, private val us
         }
     }
 
-
     override fun filter(
         title: String,
         category: Category?,
@@ -107,32 +105,16 @@ class PostServiceImpl(private val postRepository: PostRepository, private val us
         status: PostStatus,
         order: String
     ): List<Post> {
-        val posts = mutableListOf<Post>()
+        val isAscendingOrder = order != "Најнови прво"
 
-        if (category == null && municipality == null && title.isEmpty()) {
-
-            return if(order == "Најнови прво"){
-                postRepository.findAllByState(status)
-                    .sortedByDescending { it.date }
-            }else{
-                postRepository.findAllByState(status)
-                    .sortedByDescending { it.date }.reversed()
-            }
-//            return postRepository.findAllByState(status)
-//                .sortedByDescending { it.date }
-        }
-
-        posts.addAll(buildQuery(title, category, municipality, status))
-
-        val uniquePosts = posts.distinct()
-
-        val sortedPosts = uniquePosts.sortedByDescending { it.date }
-
-        return if (order == "Најнови прво") {
-            sortedPosts.reversed()
+        val posts = if (category == null && municipality == null && title.isEmpty()) {
+            postRepository.findAllByState(status)
         } else {
-            sortedPosts
+            buildQuery(title, category, municipality, status).distinct()
         }
+
+        val sortedPosts = posts.sortedByDescending { it.date }
+        return if (isAscendingOrder) sortedPosts.reversed() else sortedPosts
     }
 
     override fun getPostImage(postId: Long): ByteArray {

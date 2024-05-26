@@ -15,7 +15,7 @@ export class PhoneDirective {
     if (value.length > 0) {
       const matches = value.match(new RegExp('.{1,3}', 'g'));
       if (matches) {
-        value = matches.join('-'); // Add '-' after every 3 characters
+        value = matches.join('-'); 
       }
     }
     input.value = value;

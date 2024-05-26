@@ -40,11 +40,6 @@ export class NavBarComponent implements OnInit {
       this.currentUser = user;
     })
 
-    // this.userService.getUserImage( ?.id!!).subscribe((imageDate) => {
-      // const imageUrl = URL.createObjectURL(new Blob([imageDate]));
-      // this.userImage = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
-  //  })
-
   }
 
   toggleDropdown() {
@@ -53,9 +48,6 @@ export class NavBarComponent implements OnInit {
 
   logOut() {
     console.log('logging out')
-    // localStorage.removeItem('jwtToken')
-    // localStorage.removeItem('user')
-
     this.authService.updateLoginStatus(false);
 
     this.router.navigate(['/home']);

@@ -7,16 +7,15 @@ data class LoginDto(
     @get: Email(message = "The entered email is not a valid email.")
     val email: String,
 
-    @get: Size(min=6, message = "Password length must be bigger than 6 characters.")
+    @get: Size(min = 6, message = "Password length must be bigger than 6 characters.")
     val password: String,
 )
 
 data class RegisterDto(
     val firstName: String,
     val lastName: String,
-//    @get: Size(min = 9, max = 9, message = "Phone number length must be 9 characters.")
     val phoneNumber: String,
-    @get: Size(min=6, message = "Password length must be bigger than 6 characters.")
+    @get: Size(min = 6, message = "Password length must be bigger than 6 characters.")
     val password: String,
     @get: Email(message = "The entered email is not a valid email.")
     val email: String

@@ -14,14 +14,13 @@ import { CategoryService } from '../../services/category.service';
 import { FilterService } from '../../services/filter.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject, catchError, debounceTime, distinctUntilChanged, forkJoin, mergeMap, of } from 'rxjs';
-import { FooterComponent } from '../footer/footer.component';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 
 @Component({
   selector: 'app-lost-items',
   standalone: true,
-  imports: [NavBarComponent, PostDetailsModalComponent, RouterLink, FilterSectionComponent, NgFor, ReactiveFormsModule, NgIf, FooterComponent, MatPaginatorModule],
+  imports: [NavBarComponent, PostDetailsModalComponent, RouterLink, FilterSectionComponent, NgFor, ReactiveFormsModule, NgIf, MatPaginatorModule],
   templateUrl: './lost-items.component.html',
   styleUrl: './lost-items.component.scss'
 })
@@ -48,11 +47,9 @@ export class LostItemsComponent {
   query$: Subject<string> = new Subject()
   q: string = ''
 
-  totalItems =  this.getItemSize; //tuka od backend da se zema broj na total items
+  totalItems =  this.getItemSize; 
   pageSize = 10;
   currentPage = 0;
-
-  // items: Post[] = []; // Fetch data for the current page
 
   pageChanged(event: PageEvent) {
     this.currentPage = event.pageIndex;
@@ -165,7 +162,7 @@ export class LostItemsComponent {
             }),
             catchError(error => {
               console.error('Error fetching image for post:', element.id, error);
-              return of(element); // Return the original element in case of error
+              return of(element); 
             })
           );
         });
@@ -173,7 +170,7 @@ export class LostItemsComponent {
       })
     ).subscribe({
       next: (data) => {
-        this.posts = data; // Assign data to this.posts once all images are fetched
+        this.posts = data;
       },
       error: (error) => {
         console.error('Error fetching lost items:', error);

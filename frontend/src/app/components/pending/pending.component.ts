@@ -19,7 +19,7 @@ export class PendingComponent implements OnInit {
 
   posts: Post[] = []
 
-  totalItems = this.getItemSize; //tuka od backend da se zema broj na total items
+  totalItems = this.getItemSize; 
   pageSize = 10;
   currentPage = 0;
 

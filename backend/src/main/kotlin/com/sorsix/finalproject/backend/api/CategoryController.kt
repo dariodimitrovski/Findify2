@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/categories")
 @CrossOrigin
 class CategoryController(private val categoryService: CategoryService) {
-
     @GetMapping()
     fun getCategories(): ResponseEntity<List<Category>> {
         return ResponseEntity.ok().body(categoryService.listAll())

@@ -12,9 +12,10 @@ import org.springframework.stereotype.Component
 
 
 @Component
-class CustomAuthenticationProvider(private val tokenService: TokenService, private val userService: UserService): AuthenticationProvider {
+class CustomAuthenticationProvider(private val tokenService: TokenService, private val userService: UserService) :
+    AuthenticationProvider {
     override fun authenticate(authentication: Authentication): Authentication? {
-        if(authentication !is BearerTokenAuthenticationToken){
+        if (authentication !is BearerTokenAuthenticationToken) {
             return null
         }
         val jwt: BearerTokenAuthenticationToken = authentication

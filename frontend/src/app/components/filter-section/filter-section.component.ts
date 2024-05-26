@@ -69,8 +69,6 @@ export class FilterSectionComponent{
     })
   }
 
-  
-
   municipalities: Municipality[] = []
 
   getMunicipalities() {

@@ -30,16 +30,14 @@ class TokenService(
     fun parseToken(token: String): UserDetails? {
         return try {
             val jwt = jwtDecoder.decode(token)
-//            val id = jwt.claims["userId"].toString()
             val email = jwt.claims["email"].toString()
-//            userDetailsService.loadUserByUsername(id)
             userDetailsService.loadUserByUsername(email)
         } catch (e: Exception) {
             null
         }
     }
 
-    fun getUserEmailFromToken(token: String): String{
+    fun getUserEmailFromToken(token: String): String {
         return jwtDecoder.decode(token).claims["email"] as String
     }
 

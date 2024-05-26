@@ -11,12 +11,8 @@ import org.springframework.stereotype.Repository
 interface UserRepository : JpaRepository<User, Long> {
     fun findByEmail(email: String?): User?
     fun existsByEmail(email: String): Boolean
-    override fun findAll():List<User>
+    override fun findAll(): List<User>
     override fun deleteById(id: Long)
-//    @Transactional
-//    @Modifying
-//    @Query("UPDATE User u SET u.firstName = :firstName, u.lastName = :lastName, u.phoneNumber = :phoneNumber, u.password = :password WHERE u.id = :id")
-//    fun updateUserData(id: Long, firstName: String, lastName: String, phoneNumber: String, password: String)
 
     @Modifying
     @Transactional

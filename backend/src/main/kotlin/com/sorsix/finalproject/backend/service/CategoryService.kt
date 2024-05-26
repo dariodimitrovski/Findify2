@@ -6,6 +6,5 @@ interface CategoryService {
 
     fun listAll(): List<Category>
     fun findCategoryByName(name: String): Category?
-
     fun findById(id: Long): Category?
 }
